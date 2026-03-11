@@ -45,9 +45,11 @@ const Navbar = () => {
           }}
           className="flex items-center gap-2 group"
         >
-          <div className="w-8 h-8 rounded-lg bg-primary/10 glow-border flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-            <span className="text-primary font-bold font-mono text-sm">BV</span>
-          </div>
+          <img
+            src="/logo.ico"
+            alt="Bay Valley Hacks Logo"
+            className="w-8 h-8 rounded-lg "
+          />
           <span className="font-display font-semibold text-foreground tracking-tight hidden sm:inline">
             Bay Valley Hacks
           </span>

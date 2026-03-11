@@ -4,9 +4,11 @@ const Footer = () => (
       <div className="flex flex-col md:flex-row items-center justify-between gap-8">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary/10 glow-border flex items-center justify-center">
-            <span className="text-primary font-bold font-mono text-sm">BV</span>
-          </div>
+          <img
+            src="/logo.ico"
+            alt="Bay Valley Hacks Logo"
+            className="w-8 h-8 rounded-lg "
+            />
           <div>
             <span className="font-display font-semibold text-foreground">Bay Valley Hacks</span>
             <p className="text-xs text-muted-foreground font-mono">Bay Area's Biggest HS Hackathon</p>
