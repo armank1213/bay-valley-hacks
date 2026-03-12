@@ -123,3 +123,25 @@
   .font-serif     { font-family: 'TiemposText', Georgia, serif; }
   .font-ui        { font-family: 'DM Sans', system-ui, sans-serif; }
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgb(18 16 14); }
+::-webkit-scrollbar-thumb {
+  background: rgba(237, 230, 220, 0.12);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 82, 26, 0.35);
+}
+
+/* Smooth section transitions */
+section {
+  position: relative;
+}
+
+/* Link underline animation */
+a[href^="mailto"] {
+  transition: color 0.3s ease;
+}
+

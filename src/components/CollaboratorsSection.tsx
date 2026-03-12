@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { MapPin } from "lucide-react"
 import { MatrixText } from "@/components/ui/matrix-text"
@@ -36,6 +36,46 @@ function Reveal({ children, delay = 0, className = "" }: {
   )
 }
 
+function OrgCard({ org, index }: { org: typeof orgs[0]; index: number }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <motion.div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="flex gap-4 py-5 relative"
+      style={{ borderBottom: "1px solid rgba(237,230,220,0.07)" }}
+    >
+      {/* Accent bar */}
+      <motion.div
+        className="w-0.5 rounded-full shrink-0"
+        style={{ minHeight: "44px" }}
+        animate={{
+          background: hovered ? "#e8521a" : "rgba(232,82,26,0.4)",
+          boxShadow: hovered ? "0 0 8px rgba(232,82,26,0.4)" : "none",
+        }}
+        transition={{ duration: 0.3 }}
+      />
+      <div>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-ui tracking-wider font-semibold px-1.5 py-0.5 rounded"
+                style={{
+                  background: "rgba(232,82,26,0.1)",
+                  color: "#e8521a",
+                }}>
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 className="font-serif font-medium text-sm" style={{ color: "rgb(237,230,220)" }}>{org.name}</h3>
+        </div>
+        <div className="flex items-center gap-1.5 mt-1 mb-1">
+          <MapPin size={10} className="text-[#e8521a]" />
+          <span className="text-xs font-ui" style={{ color: "rgba(237,230,220,0.35)" }}>{org.city}, CA</span>
+        </div>
+        <p className="text-xs font-ui" style={{ color: "rgba(237,230,220,0.45)" }}>{org.focus}</p>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function CollaboratorsSection() {
   return (
     <section id="collaborators" className="py-24 sm:py-32 px-6"
@@ -64,46 +104,65 @@ export default function CollaboratorsSection() {
           <div>
             {orgs.map((org, i) => (
               <Reveal key={org.name} delay={0.08 + i * 0.07}>
-                <div className="flex gap-4 py-5" style={{ borderBottom: "1px solid rgba(237,230,220,0.07)" }}>
-                  <div className="w-0.5 bg-[#e8521a] rounded-full shrink-0" style={{ minHeight: "44px" }} />
-                  <div>
-                    <h3 className="font-serif font-medium text-sm" style={{ color: "rgb(237,230,220)" }}>{org.name}</h3>
-                    <div className="flex items-center gap-1.5 mt-0.5 mb-1">
-                      <MapPin size={10} className="text-[#e8521a]" />
-                      <span className="text-xs font-ui" style={{ color: "rgba(237,230,220,0.35)" }}>{org.city}, CA</span>
-                    </div>
-                    <p className="text-xs font-ui" style={{ color: "rgba(237,230,220,0.45)" }}>{org.focus}</p>
-                  </div>
-                </div>
+                <OrgCard org={org} index={i} />
               </Reveal>
             ))}
           </div>
 
           {/* Map */}
           <Reveal delay={0.25}>
-            <div className="relative rounded-xl overflow-hidden aspect-[4/3]"
-                 style={{ background: "rgba(237,230,220,0.03)", border: "1px solid rgba(237,230,220,0.08)" }}>
-              {/* Contour lines */}
-              <svg className="absolute inset-0 w-full h-full opacity-[0.07]"
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3]"
+                 style={{
+                   background: "rgba(237,230,220,0.02)",
+                   border: "1px solid rgba(237,230,220,0.06)",
+                   boxShadow: "inset 0 0 60px rgba(0,0,0,0.3)",
+                 }}>
+              {/* Grid lines */}
+              <svg className="absolute inset-0 w-full h-full opacity-[0.04]"
                    viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+                {/* Horizontal lines */}
+                {[50, 100, 150, 200, 250].map((y) => (
+                  <line key={`h-${y}`} x1="0" y1={y} x2="400" y2={y}
+                        stroke="rgb(237,230,220)" strokeWidth="0.5" />
+                ))}
+                {/* Vertical lines */}
+                {[50, 100, 150, 200, 250, 300, 350].map((x) => (
+                  <line key={`v-${x}`} x1={x} y1="0" x2={x} y2="300"
+                        stroke="rgb(237,230,220)" strokeWidth="0.5" />
+                ))}
+                {/* Contour lines */}
                 {[20, 50, 80, 110, 140].map((r) => (
                   <ellipse key={r} cx="200" cy="150" rx={r * 2} ry={r}
-                           fill="none" stroke="rgb(237,230,220)" strokeWidth="1" />
+                           fill="none" stroke="rgb(237,230,220)" strokeWidth="0.5" strokeDasharray="4 4" />
                 ))}
               </svg>
 
-              {/* All 6 pins */}
+              {/* Ambient glow */}
+              <div className="absolute inset-0 pointer-events-none"
+                   style={{
+                     background: "radial-gradient(circle at 50% 50%, rgba(232,82,26,0.04), transparent 60%)",
+                   }} />
+
+              {/* All 6 pins with pulsing ripple */}
               {pins.map((pin, i) => (
                 <motion.div key={pin.name}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6 + i * 0.12, type: "spring", stiffness: 280 }}
-                  className="absolute flex flex-col items-start gap-1"
+                  className="absolute flex flex-col items-start gap-1 group cursor-default"
                   style={{ left: pin.left, top: pin.top }}>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#e8521a]"
-                         style={{ boxShadow: "0 0 10px rgba(232,82,26,0.5)" }} />
-                    <span className="text-[10px] font-ui tracking-wider uppercase"
+                    {/* Pin with ripple */}
+                    <div className="relative">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#e8521a] relative z-10"
+                           style={{ boxShadow: "0 0 10px rgba(232,82,26,0.5)" }} />
+                      {/* Ripple rings */}
+                      <div className="absolute inset-0 w-2.5 h-2.5 rounded-full border border-[#e8521a] opacity-0 animate-ping"
+                           style={{ animationDuration: "2.5s", animationDelay: `${i * 0.4}s` }} />
+                      <div className="absolute -inset-1.5 rounded-full border border-[#e8521a] opacity-0 animate-ping"
+                           style={{ animationDuration: "2.5s", animationDelay: `${i * 0.4 + 0.6}s` }} />
+                    </div>
+                    <span className="text-[10px] font-ui tracking-wider uppercase group-hover:text-[#e8521a] transition-colors"
                           style={{ color: "rgba(237,230,220,0.6)" }}>
                       {pin.name}
                     </span>

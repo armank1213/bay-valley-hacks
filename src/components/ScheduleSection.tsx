@@ -24,6 +24,10 @@ const typeColor: Record<string, string> = {
   main: "#e8521a", workshop: "#c0922a", food: "#4a9a65", fun: "#6a7ec5",
 }
 
+const typeLabel: Record<string, string> = {
+  main: "Event", workshop: "Workshop", food: "Food", fun: "Activity",
+}
+
 const dayLabels: Record<Day, string> = {
   saturday: "Saturday Apr 18",
 }
@@ -93,26 +97,63 @@ export default function ScheduleSection() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -10 }}
             transition={{ duration: 0.2 }}
-            className="relative pl-5"
-            style={{ borderLeft: "2px solid rgba(237,230,220,0.08)" }}
+            className="relative pl-6 sm:pl-8"
           >
+            {/* Glowing timeline line */}
+            <div className="absolute left-0 top-0 bottom-0 w-[2px]"
+                 style={{
+                   background: "linear-gradient(to bottom, rgba(232,82,26,0.4), rgba(237,230,220,0.06) 30%, rgba(237,230,220,0.06) 70%, rgba(232,82,26,0.4))",
+                 }} />
+
             {schedule[day].map((ev, i) => (
               <motion.div key={`${day}-${i}`}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative flex gap-5 py-5"
-                style={{ borderBottom: "1px solid rgba(237,230,220,0.06)" }}
+                transition={{ delay: i * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="relative flex gap-4 sm:gap-6 py-5 group"
+                style={{ borderBottom: "1px solid rgba(237,230,220,0.04)" }}
               >
-                <div className="absolute -left-[17px] top-[26px] w-2 h-2 rounded-full"
-                     style={{ background: typeColor[ev.type] }} />
-                <span className="w-16 shrink-0 text-xs font-ui tabular-nums pt-0.5"
-                      style={{ color: "rgba(237,230,220,0.3)" }}>
-                  {ev.time}
-                </span>
-                <div>
-                  <h3 className="font-serif font-medium text-sm" style={{ color: "rgb(237,230,220)" }}>{ev.title}</h3>
-                  <p className="text-xs font-ui mt-0.5 leading-relaxed" style={{ color: "rgba(237,230,220,0.45)" }}>{ev.desc}</p>
+                {/* Dot with glow */}
+                <div className="absolute -left-[21px] sm:-left-[25px] top-[26px]">
+                  <div className="w-2.5 h-2.5 rounded-full relative"
+                       style={{ background: typeColor[ev.type] }}>
+                    <div className="absolute inset-0 rounded-full animate-ping"
+                         style={{
+                           background: typeColor[ev.type],
+                           opacity: 0.2,
+                           animationDuration: "3s",
+                           animationDelay: `${i * 0.3}s`,
+                         }} />
+                  </div>
+                </div>
+
+                {/* Time column */}
+                <div className="w-16 sm:w-20 shrink-0 pt-0.5">
+                  <span className="text-xs font-ui tabular-nums font-medium"
+                        style={{ color: "rgba(237,230,220,0.4)" }}>
+                    {ev.time}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <h3 className="font-serif font-medium text-sm sm:text-base group-hover:text-[#e8521a] transition-colors duration-300"
+                        style={{ color: "rgb(237,230,220)" }}>
+                      {ev.title}
+                    </h3>
+                    <span className="text-[9px] font-ui tracking-[0.15em] uppercase px-2 py-0.5 rounded-full shrink-0"
+                          style={{
+                            background: `${typeColor[ev.type]}15`,
+                            color: typeColor[ev.type],
+                            border: `1px solid ${typeColor[ev.type]}25`,
+                          }}>
+                      {typeLabel[ev.type]}
+                    </span>
+                  </div>
+                  <p className="text-xs font-ui mt-0.5 leading-relaxed" style={{ color: "rgba(237,230,220,0.4)" }}>
+                    {ev.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}
