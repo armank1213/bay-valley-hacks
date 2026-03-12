@@ -1,115 +1,117 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import { MatrixText } from "@/components/ui/matrix-text"
+
+function Reveal({ children, delay = 0, className = "" }: {
+  children: React.ReactNode; delay?: number; className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-6%" })
+  return (
+    <motion.div ref={ref} className={className}
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
+      {children}
+    </motion.div>
+  )
+}
 
 const stats = [
   { value: "500+", label: "Hackers" },
   { value: "24", label: "Hours" },
-  { value: "$25K+", label: "In Prizes" },
-  { value: "5+", label: "Partner Orgs" },
-];
+  { value: "$25K+", label: "In prizes" },
+  { value: "100%", label: "Free" },
+]
 
-const cards = [
-  {
-    icon: "🤝",
-    title: "Five Bay Area Orgs — One Massive Event",
-    body: "We bring local student hackathons together to multiply mentorship, sponsorship, and impact.",
-  },
-  {
-    icon: "🧑‍🏫",
-    title: "Real Mentors, Real Guidance",
-    body: "Industry professionals and experienced developers available throughout the event for 1-on-1 support.",
-  },
-  {
-    icon: "🏆",
-    title: "Workshops & Track Prizes",
-    body: "Specialized tracks in AI/ML, Hardware, Civic Tech, and more — each with dedicated workshops and prizes.",
-  },
-  {
-    icon: "🚀",
-    title: "Career Pipelines",
-    body: "Connect with sponsors and recruiters. Turn your weekend project into an internship opportunity.",
-  },
-];
-
-const useInView = (threshold = 0.2) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-
-  return { ref, visible };
-};
-
-const AboutSection = () => {
-  const { ref: sectionRef, visible } = useInView(0.1);
-
+export default function AboutSection() {
   return (
-    <section id="about" ref={sectionRef} className="relative py-32 px-6 noise-bg">
-      <div className="absolute inset-0 grid-bg opacity-20" />
+    <section id="about" className="py-24 sm:py-32 px-6" style={{ background: "rgb(26,24,21)" }}>
+      <div className="max-w-5xl mx-auto">
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Section header */}
-        <div className={`text-center mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="inline-block px-4 py-1.5 rounded-full glass glow-border text-xs font-mono text-primary tracking-widest uppercase mb-6">
-            What & Why
-          </span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight">
-            More Than a <span className="text-gradient-primary">Hackathon</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground font-display text-lg max-w-2xl mx-auto">
-            Bay Valley Hacks unites student organizers from across the Bay Area for one massive weekend of creation, learning, and community.
+        <Reveal>
+          <p className="text-xs font-ui tracking-[0.28em] uppercase mb-10 text-[#e8521a]">
+            About
           </p>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <MatrixText
+            text="500 hackers. 24 hours."
+            triggerOnView
+            matrixColor="#e8521a"
+            resolvedColor="rgb(237,230,220)"
+            className="font-headline leading-tight mb-12 justify-start"
+            style={{ fontSize: "clamp(1.8rem, 4vw, 3.2rem)", fontWeight: 600 }}
+          />
+        </Reveal>
+
+        {/* Two-column */}
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-8 mb-20">
+          <Reveal delay={0.1}>
+            <p className="text-xs font-ui tracking-[0.2em] uppercase mb-3"
+               style={{ color: "rgba(237,230,220,0.35)" }}>
+              When &amp; Where
+            </p>
+            <p className="font-serif text-base font-medium" style={{ color: "rgb(237,230,220)" }}>
+              August 15–17, 2026
+            </p>
+            <p className="font-serif text-base mt-0.5" style={{ color: "rgba(237,230,220,0.5)" }}>
+              Bay Area, CA · In-person
+            </p>
+          </Reveal>
+          <Reveal delay={0.13}>
+            <p className="text-xs font-ui tracking-[0.2em] uppercase mb-3"
+               style={{ color: "rgba(237,230,220,0.35)" }}>
+              What you get
+            </p>
+            <p className="font-serif text-base leading-relaxed" style={{ color: "rgba(237,230,220,0.55)" }}>
+              All meals covered, workshops from people who actually know their stuff,
+              mentors around the clock, and $25K+ in prizes. No experience needed.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Stats bar */}
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 mb-20 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="glass glow-border rounded-2xl p-6 text-center group hover:bg-primary/5 transition-all duration-300"
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <div className="text-3xl sm:text-4xl font-display font-bold text-primary mb-1">
-                {stat.value}
+        {/* Stats */}
+        <Reveal delay={0.18}>
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y sm:divide-y-0"
+               style={{
+                 borderTop: "1px solid rgba(237,230,220,0.08)",
+                 borderBottom: "1px solid rgba(237,230,220,0.08)",
+                 borderLeft: "1px solid rgba(237,230,220,0.08)",
+               }}>
+            {stats.map((s) => (
+              <div key={s.label} className="py-7 px-6"
+                   style={{ borderRight: "1px solid rgba(237,230,220,0.08)" }}>
+                <div className="font-headline font-black leading-none mb-1.5 text-[#e8521a]"
+                     style={{ fontSize: "clamp(1.7rem, 4vw, 2.6rem)" }}>
+                  {s.value}
+                </div>
+                <div className="text-xs font-ui tracking-widest uppercase"
+                     style={{ color: "rgba(237,230,220,0.35)" }}>
+                  {s.label}
+                </div>
               </div>
-              <div className="text-sm font-mono text-muted-foreground uppercase tracking-widest">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
 
-        {/* Feature cards */}
-        <div className="grid sm:grid-cols-2 gap-5">
-          {cards.map((card, i) => (
-            <div
-              key={card.title}
-              className={`glass rounded-2xl p-8 group hover:glow-border transition-all duration-500 hover:-translate-y-1 ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${300 + i * 100}ms` }}
-            >
-              <span className="text-3xl mb-4 block">{card.icon}</span>
-              <h3 className="text-xl font-display font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                {card.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {card.body}
+        {/* Hardware callout */}
+        <Reveal delay={0.22} className="mt-10">
+          <div className="flex gap-4 p-5 rounded-xl"
+               style={{ background: "rgba(237,230,220,0.04)", border: "1px solid rgba(237,230,220,0.08)" }}>
+            <div className="w-0.5 rounded-full shrink-0 bg-[#e8521a]" style={{ minHeight: "100%" }} />
+            <div>
+              <p className="font-serif font-semibold text-sm mb-1" style={{ color: "rgb(237,230,220)" }}>
+                Hardware lab included
+              </p>
+              <p className="font-serif text-sm leading-relaxed" style={{ color: "rgba(237,230,220,0.5)" }}>
+                Soldering stations, microcontrollers, sensors, and more. If you want to build something physical, you'll have what you need.
               </p>
             </div>
-          ))}
-        </div>
+          </div>
+        </Reveal>
       </div>
     </section>
-  );
-};
-
-export default AboutSection;
+  )
+}

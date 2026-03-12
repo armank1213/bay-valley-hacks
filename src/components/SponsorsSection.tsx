@@ -1,112 +1,111 @@
-import { useEffect, useRef, useState } from "react";
-import ScrollReveal from "@/components/ScrollReveal";
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import { MatrixText } from "@/components/ui/matrix-text"
 
-interface Sponsor {
-  name: string;
-  tier: "platinum" | "gold" | "silver";
+const MAILTO = "mailto:sponsors@bayvalleyhacks.com?subject=Sponsoring%20Bay%20Valley%20Hacks"
+
+function Reveal({ children, delay = 0, className = "" }: {
+  children: React.ReactNode; delay?: number; className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-6%" })
+  return (
+    <motion.div ref={ref} className={className}
+      initial={{ opacity: 0, y: 22 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
+      {children}
+    </motion.div>
+  )
 }
 
-const sponsors: Record<string, Sponsor[]> = {
-  platinum: [
-    { name: "TechCorp", tier: "platinum" },
-    { name: "InnovateLabs", tier: "platinum" },
-  ],
-  gold: [
-    { name: "CloudBase", tier: "gold" },
-    { name: "DevTools Inc", tier: "gold" },
-    { name: "AI Systems", tier: "gold" },
-  ],
-  silver: [
-    { name: "StartupHub", tier: "silver" },
-    { name: "CodeAcademy", tier: "silver" },
-    { name: "HackFund", tier: "silver" },
-    { name: "ByteWorks", tier: "silver" },
-  ],
-};
+const tiers = [
+  { name: "Partners", slots: ["Become a partner →", "Your company here →", "Let's talk →"], h: 80, minW: 180 },
+  { name: "Gold",     slots: ["Sponsor us", "Open spot", "You?"],                          h: 68, minW: 150 },
+  { name: "Silver",   slots: ["+", "+", "+", "+"],                                         h: 56, minW: 110 },
+  { name: "Bronze",   slots: ["+", "+", "+", "+", "+", "+"],                               h: 48, minW: 90  },
+]
 
-const tierStyles: Record<string, { border: string; size: string }> = {
-  platinum: { border: "glow-border", size: "h-24 sm:h-28" },
-  gold: { border: "border border-accent/30", size: "h-20 sm:h-24" },
-  silver: { border: "border border-border", size: "h-16 sm:h-20" },
-};
-
-const SponsorsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
+export default function SponsorsSection() {
   return (
-    <section id="sponsors" ref={sectionRef} className="relative py-32 px-6 noise-bg">
-      <div className="absolute inset-0 grid-bg opacity-20" />
+    <section id="sponsors" className="py-24 sm:py-32 px-6" style={{ background: "rgb(26,24,21)" }}>
+      <div className="max-w-5xl mx-auto">
 
-      <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="inline-block px-4 py-1.5 rounded-full glass glow-border text-xs font-mono text-primary tracking-widest uppercase mb-6">
-            Sponsors & Partners
-          </span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight">
-            Backed by the <span className="text-gradient-primary">Best</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground font-display text-lg max-w-xl mx-auto">
-            Our sponsors make Bay Valley Hacks possible. Interested in sponsoring?
-          </p>
-          <a
-            href="mailto:sponsors@bayvalleyhacks.com"
-            className="inline-block mt-4 px-6 py-2.5 rounded-xl glow-border text-primary font-display font-semibold text-sm hover:bg-primary/5 transition-all duration-300"
-          >
-            Become a Sponsor →
-          </a>
+        <Reveal>
+          <p className="text-xs font-ui tracking-[0.28em] uppercase mb-10 text-[#e8521a]">Sponsors</p>
+        </Reveal>
+
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4">
+          <Reveal delay={0.05}>
+            <MatrixText
+              text="Our backers"
+              triggerOnView
+              matrixColor="#e8521a"
+              resolvedColor="rgb(237,230,220)"
+              className="font-headline leading-tight justify-start"
+              style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 600 }}
+            />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="flex flex-wrap gap-4 text-sm font-ui" style={{ color: "rgba(237,230,220,0.35)" }}>
+              <a href="/prospectus.pdf" className="hover:text-[#e8521a] transition-colors">View Prospectus</a>
+              <a href={MAILTO} className="hover:text-[#e8521a] transition-colors">sponsors@bayvalleyhacks.com</a>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Tiers */}
-        {(["platinum", "gold", "silver"] as const).map((tier, ti) => (
-          <ScrollReveal
-            key={tier}
-            delayMs={200 + ti * 120}
-            className={`mb-12 ${visible ? "" : ""}`}
-          >
-            <div>
-              <h3 className="text-xs font-mono text-muted-foreground uppercase tracking-[0.3em] text-center mb-6">
-                {tier} sponsors
-              </h3>
-              <div
-                className={`flex flex-wrap justify-center gap-4 ${
-                  tier === "platinum" ? "" : ""
-                }`}
-              >
-                {sponsors[tier].map((sponsor, i) => (
-                  <ScrollReveal
-                    key={sponsor.name}
-                    delayMs={300 + ti * 120 + i * 70}
-                    className="will-change-transform"
-                  >
-                    <div
-                      className={`glass rounded-2xl ${tierStyles[tier].border} ${tierStyles[tier].size} px-8 flex items-center justify-center group hover:bg-primary/5 transition-all duration-500 hover:-translate-y-1`}
-                    >
-                      <span className="font-display font-bold text-muted-foreground/60 group-hover:text-foreground transition-colors text-lg">
-                        {sponsor.name}
-                      </span>
-                    </div>
-                  </ScrollReveal>
+        <Reveal delay={0.1}>
+          <p className="font-serif text-sm mb-12 italic max-w-lg"
+             style={{ color: "rgba(237,230,220,0.4)" }}>
+            Bay Valley Hacks runs on support from companies that want to invest in the next generation.
+          </p>
+        </Reveal>
+
+        <div className="flex flex-col gap-10">
+          {tiers.map((tier, ti) => (
+            <Reveal key={tier.name} delay={0.12 + ti * 0.08}>
+              <div className="flex items-center gap-4 mb-5">
+                <span className="text-xs font-ui tracking-[0.22em] uppercase"
+                      style={{ color: "rgba(237,230,220,0.3)" }}>
+                  {tier.name}
+                </span>
+                <div className="flex-1 h-px" style={{ background: "rgba(237,230,220,0.07)" }} />
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {tier.slots.map((label, si) => (
+                  <a key={si} href={MAILTO}
+                     className="flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-0.5 group"
+                     style={{
+                       height: `${tier.h}px`,
+                       minWidth: `${tier.minW}px`,
+                       padding: "0 20px",
+                       background: "rgba(237,230,220,0.03)",
+                       border: "1px dashed rgba(237,230,220,0.1)",
+                     }}>
+                    <span className="text-sm font-ui group-hover:text-[#e8521a] transition-colors duration-150"
+                          style={{ color: "rgba(237,230,220,0.25)" }}>
+                      {label}
+                    </span>
+                  </a>
                 ))}
               </div>
-            </div>
-          </ScrollReveal>
-        ))}
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.45} className="mt-12 flex flex-wrap gap-3">
+          <a href={MAILTO}
+             className="px-5 py-2.5 rounded-lg font-ui font-semibold text-sm transition-all hover:bg-[#e8521a]/10"
+             style={{ border: "1.5px solid #e8521a", color: "#e8521a" }}>
+            Become a partner
+          </a>
+          <a href={MAILTO}
+             className="px-5 py-2.5 rounded-lg font-ui text-sm transition-all hover:border-[rgba(237,230,220,0.25)]"
+             style={{ border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.4)" }}>
+            sponsors@bayvalleyhacks.com
+          </a>
+        </Reveal>
       </div>
     </section>
-  );
-};
-
-export default SponsorsSection;
+  )
+}

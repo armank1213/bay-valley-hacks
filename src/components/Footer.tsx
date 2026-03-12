@@ -1,51 +1,70 @@
-const Footer = () => (
-  <footer className="relative py-16 px-6 border-t border-border noise-bg">
-    <div className="relative z-10 max-w-5xl mx-auto">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <img
-            src="/logo.ico"
-            alt="Bay Valley Hacks Logo"
-            className="w-8 h-8 rounded-lg "
-            />
-          <div>
-            <span className="font-display font-semibold text-foreground">Bay Valley Hacks</span>
-            <p className="text-xs text-muted-foreground font-mono">Bay Area's Biggest HS Hackathon</p>
+import { SaveButton } from "@/components/ui/save-button"
+
+function scrollTo(href: string) {
+  document.querySelector(href)?.scrollIntoView({ behavior: "smooth" })
+}
+
+export default function Footer() {
+  return (
+    <footer className="py-20 px-6" style={{ background: "rgb(17,16,14)" }}>
+      <div className="max-w-5xl mx-auto">
+        {/* CTA */}
+        <div className="mb-16 pb-16" style={{ borderBottom: "1px solid rgba(237,230,220,0.07)" }}>
+          <p className="font-headline leading-tight mb-3"
+             style={{ color: "rgb(237,230,220)", fontSize: "clamp(1.5rem, 3.5vw, 2.4rem)", fontWeight: 600 }}>
+            Come build something.
+          </p>
+          <p className="font-serif text-sm mb-8 italic"
+             style={{ color: "rgba(237,230,220,0.32)" }}>
+            In person · August 15–17 · Bay Area · 100% free
+          </p>
+          <div className="flex flex-wrap gap-3 items-center">
+            <SaveButton text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }} />
+            <a href="mailto:hello@bayvalleyhacks.com"
+               className="px-6 py-3 rounded-full font-ui text-sm transition-all hover:bg-white/5"
+               style={{ border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.4)" }}>
+              hello@bayvalleyhacks.com
+            </a>
           </div>
         </div>
 
-        {/* Socials */}
-        <div className="flex items-center gap-4">
-          {[
-            { label: "Instagram", href: "https://instagram.com/bayvalleyhacks" },
-            { label: "Discord", href: "https://discord.gg/" },
-            { label: "Email", href: "mailto:hello@bayvalleyhacks.com" },
-          ].map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg glass text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+        {/* Bottom */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <img src="/logo.ico" alt="BVH" className="w-6 h-6 rounded-md opacity-60" />
+            <span className="font-headline font-bold text-xs tracking-wide"
+                  style={{ color: "rgba(237,230,220,0.35)" }}>
+              Bay Valley Hacks
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-5">
+            {[
+              { label: "About", onClick: () => scrollTo("#about") },
+              { label: "Schedule", onClick: () => scrollTo("#schedule") },
+              { label: "FAQ", onClick: () => scrollTo("#faq") },
+              { label: "Instagram", href: "https://instagram.com/bayvalleyhacks" },
+              { label: "Discord", href: "https://discord.gg/" },
+            ].map((l) => "href" in l ? (
+              <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
+                 className="text-xs font-ui hover:text-white transition-colors"
+                 style={{ color: "rgba(237,230,220,0.25)" }}>
+                {l.label}
+              </a>
+            ) : (
+              <button key={l.label} onClick={l.onClick}
+                      className="text-xs font-ui hover:text-white transition-colors"
+                      style={{ color: "rgba(237,230,220,0.25)" }}>
+                {l.label}
+              </button>
+            ))}
+          </div>
+
+          <p className="text-xs font-ui" style={{ color: "rgba(237,230,220,0.15)" }}>
+            © {new Date().getFullYear()} Bay Valley Hacks
+          </p>
         </div>
       </div>
-
-      <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-muted-foreground font-mono">
-          © {new Date().getFullYear()} Bay Valley Hacks. All rights reserved.
-        </p>
-        <div className="flex gap-4 text-xs font-mono text-muted-foreground">
-          <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-primary transition-colors">Code of Conduct</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
-
-export default Footer;
+    </footer>
+  )
+}

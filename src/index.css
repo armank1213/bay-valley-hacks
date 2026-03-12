@@ -1,4 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Tiempos Text ────────────────────────────────────────── */
+@font-face {
+  font-family: 'TiemposText';
+  src: url('/fonts/TestTiemposText-Regular-BF66457a50cd521.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposText';
+  src: url('/fonts/TestTiemposText-RegularItalic-BF66457a50421c2.otf') format('opentype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposText';
+  src: url('/fonts/TestTiemposText-Medium-BF66457a508489a.otf') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposText';
+  src: url('/fonts/TestTiemposText-MediumItalic-BF66457a508d6d9.otf') format('opentype');
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposText';
+  src: url('/fonts/TestTiemposText-Semibold-BF66457a4fed201.otf') format('opentype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposText';
+  src: url('/fonts/TestTiemposText-SemiboldItalic-BF66457a505477c.otf') format('opentype');
+  font-weight: 600; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposText';
+  src: url('/fonts/TestTiemposText-Bold-BF66457a4f03c40.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ── Tiempos Headline ────────────────────────────────────── */
+@font-face {
+  font-family: 'TiemposHeadline';
+  src: url('/fonts/TestTiemposHeadline-Regular-BF66457a508e31a.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposHeadline';
+  src: url('/fonts/TestTiemposHeadline-Semibold-BF66457a509040b.otf') format('opentype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposHeadline';
+  src: url('/fonts/TestTiemposHeadline-Bold-BF66457a5113d17.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TiemposHeadline';
+  src: url('/fonts/TestTiemposHeadline-Black-BF66457a50e385b.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -6,137 +67,59 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 45 30% 92%;
-
-    --card: 0 0% 10%;
-    --card-foreground: 45 30% 92%;
-
-    --popover: 0 0% 10%;
-    --popover-foreground: 45 30% 92%;
-
-    --primary: 40 95% 55%;
-    --primary-foreground: 0 0% 5%;
-
-    --secondary: 0 0% 13%;
-    --secondary-foreground: 45 30% 92%;
-
-    --muted: 0 0% 16%;
-    --muted-foreground: 35 10% 50%;
-
-    --accent: 15 85% 50%;
-    --accent-foreground: 45 30% 92%;
-
+    /* Dark gray theme */
+    --background: 26 24 21;
+    --foreground: 237 230 220;
+    --card: 32 30 27;
+    --card-foreground: 237 230 220;
+    --popover: 32 30 27;
+    --popover-foreground: 237 230 220;
+    --primary: 16 72% 50%;
+    --primary-foreground: 26 24 21;
+    --secondary: 40 36 32;
+    --secondary-foreground: 237 230 220;
+    --muted: 40 36 32;
+    --muted-foreground: 130 120 110;
+    --accent: 16 72% 50%;
+    --accent-foreground: 26 24 21;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 40 95% 55%;
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 8%;
-    --sidebar-foreground: 45 30% 92%;
-    --sidebar-primary: 40 95% 55%;
-    --sidebar-primary-foreground: 0 0% 5%;
-    --sidebar-accent: 0 0% 13%;
-    --sidebar-accent-foreground: 45 30% 92%;
-    --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 40 95% 55%;
-
-    /* Custom tokens */
-    --glow-primary: 40 95% 55%;
-    --glow-secondary: 15 85% 50%;
-    --glow-warm: 5 75% 45%;
-
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --destructive-foreground: 237 230 220;
+    --border: 48 44 40;
+    --input: 48 44 40;
+    --ring: 16 72% 50%;
+    --radius: 0.5rem;
+    --success: 142.1 70.6% 45.3%;
+    --success-foreground: 0 0% 100%;
+    --sidebar-background: 26 24 21;
+    --sidebar-foreground: 237 230 220;
+    --sidebar-primary: 16 72% 50%;
+    --sidebar-primary-foreground: 26 24 21;
+    --sidebar-accent: 40 36 32;
+    --sidebar-accent-foreground: 237 230 220;
+    --sidebar-border: 48 44 40;
+    --sidebar-ring: 16 72% 50%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-display);
+    background-color: rgb(26 24 21);
+    color: rgb(237 230 220);
+    font-family: 'TiemposText', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-
   ::selection {
-    background: hsl(40 95% 55% / 0.3);
-    color: hsl(45 30% 95%);
+    background: rgba(232, 82, 26, 0.25);
+    color: rgb(255 230 210);
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-display);
-  }
-
-  .font-mono {
-    font-family: var(--font-mono);
-  }
-
-  .text-gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-secondary)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .text-gradient-warm {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-warm)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .glass {
-    background: hsl(0 0% 8% / 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid hsl(0 0% 20% / 0.5);
-  }
-
-  .glass-strong {
-    background: hsl(0 0% 10% / 0.85);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid hsl(0 0% 20% / 0.4);
-  }
-
-  .glow-border {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.15),
-                inset 0 0 20px hsl(var(--primary) / 0.05);
-    border: 1px solid hsl(var(--primary) / 0.2);
-  }
-
-  .glow-text {
-    text-shadow: 0 0 40px hsl(var(--primary) / 0.5),
-                 0 0 80px hsl(var(--primary) / 0.2);
-  }
-
-  .grid-bg {
-    background-image:
-      linear-gradient(hsl(0 0% 16% / 0.3) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(0 0% 16% / 0.3) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  .noise-bg {
-    position: relative;
-  }
-
-  .noise-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.02;
-    pointer-events: none;
-    z-index: 0;
-  }
+  .font-display   { font-family: 'TiemposHeadline', Georgia, serif; }
+  .font-headline  { font-family: 'TiemposHeadline', Georgia, serif; }
+  .font-serif     { font-family: 'TiemposText', Georgia, serif; }
+  .font-ui        { font-family: 'DM Sans', system-ui, sans-serif; }
 }

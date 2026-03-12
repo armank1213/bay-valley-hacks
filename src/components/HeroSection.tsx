@@ -1,190 +1,196 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ShaderAnimation } from "@/components/ui/shader-animation"
+import { GoldenGateBridge } from "@/components/GoldenGateBridge"
+import { MatrixText } from "@/components/ui/matrix-text"
+import { SaveButton } from "@/components/ui/save-button"
 
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
+const TARGET = new Date("2026-08-15T09:00:00")
+
+function useCountdown() {
+  const calc = useCallback(() => {
+    const diff = TARGET.getTime() - Date.now()
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff / 3600000) % 24),
+      minutes: Math.floor((diff / 60000) % 60),
+      seconds: Math.floor((diff / 1000) % 60),
+    }
+  }, [])
+  const [time, setTime] = useState(calc)
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc), 1000)
+    return () => clearInterval(id)
+  }, [calc])
+  return time
 }
 
-const TARGET_DATE = new Date("2026-08-15T09:00:00");
-
-const useCountdown = (): TimeLeft => {
-  const calc = useCallback(() => {
-    const diff = TARGET_DATE.getTime() - Date.now();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    return {
-      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-      hours: Math.floor(diff / (1000 * 60 * 60) % 24),
-      minutes: Math.floor(diff / (1000 * 60) % 60),
-      seconds: Math.floor(diff / 1000 % 60)
-    };
-  }, []);
-
-  const [time, setTime] = useState(calc);
-
-  useEffect(() => {
-    const id = setInterval(() => setTime(calc), 1000);
-    return () => clearInterval(id);
-  }, [calc]);
-
-  return time;
-};
-
-const CountdownUnit = ({ value, label }: {value: number;label: string;}) =>
-<div className="flex flex-col items-center">
-    <div className="glow-border rounded-xl px-4 py-3 min-w-[70px] bg-secondary/50">
-      <span className="text-3xl sm:text-4xl font-mono font-bold text-primary tabular-nums">
-        {String(value).padStart(2, "0")}
+function CountUnit({ value, label }: { value: number; label: string }) {
+  const display = String(value).padStart(2, "0")
+  return (
+    <div className="flex flex-col items-center gap-1.5">
+      <div className="relative w-[58px] h-[56px] rounded-lg overflow-hidden"
+           style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+        <AnimatePresence mode="wait">
+          <motion.span key={display}
+            initial={{ y: -18, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 18, opacity: 0 }}
+            transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 flex items-center justify-center font-headline tabular-nums"
+            style={{ color: "#e8521a", fontSize: "1.65rem", fontWeight: 700 }}
+          >
+            {display}
+          </motion.span>
+        </AnimatePresence>
+      </div>
+      <span className="text-[9px] font-ui tracking-[0.2em] uppercase"
+            style={{ color: "rgba(255,255,255,0.28)" }}>
+        {label}
       </span>
     </div>
-    <span className="text-xs font-mono text-muted-foreground mt-2 uppercase tracking-widest">
-      {label}
-    </span>
-  </div>;
+  )
+}
 
-
-const HeroSection = () => {
-  const time = useCountdown();
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, []);
+export default function HeroSection() {
+  const time = useCountdown()
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise-bg">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 grid-bg opacity-40" />
+    <section className="relative w-full overflow-hidden" style={{ height: "100svh", minHeight: "660px" }}>
+      {/* Layer 1 — Shader */}
+      <div className="absolute inset-0 z-0">
+        <ShaderAnimation />
+      </div>
 
-      {/* Radial glow following mouse */}
-      <div
-        className="absolute pointer-events-none w-[600px] h-[600px] rounded-full transition-all duration-700 ease-out"
-        style={{
-          left: mousePos.x - 300,
-          top: mousePos.y - 300,
-          background:
-          "radial-gradient(circle, hsl(40 95% 55% / 0.08) 0%, transparent 70%)"
-        }} />
-      
+      {/* Layer 2 — Bridge */}
+      <GoldenGateBridge />
 
-      {/* Static ambient glows */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-glow-secondary/5 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
+      {/* Layer 3 — Vignette. Fade to dark gray at bottom (matching site bg). */}
+      <div className="absolute inset-0 z-20 pointer-events-none"
+           style={{
+             background:
+               "radial-gradient(ellipse 85% 50% at 50% 46%, transparent 22%, rgba(8,5,3,0.52) 76%)," +
+               "linear-gradient(to bottom, rgba(8,5,3,0.5) 0%, transparent 18%, transparent 58%, rgb(26,24,21) 100%)",
+           }} />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        {/* Pre-title */}
-        <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
-          
+      {/* Layer 4 — Content */}
+      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-4">
+        <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
 
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mb-7 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-ui tracking-widest uppercase"
+            style={{ background: "rgba(232,82,26,0.12)", border: "1px solid rgba(232,82,26,0.28)", color: "#e8521a" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#e8521a] animate-pulse" />
+            August 15–17, 2026 · Bay Area, CA
+          </motion.div>
 
-          
-        </div>
+          {/* Matrix title — MUCH bigger, Tiempos Headline Black */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35, duration: 0.3 }}
+            className="mb-6 w-full"
+          >
+            <MatrixText
+              text="BAY VALLEY HACKS"
+              initialDelay={550}
+              letterInterval={80}
+              letterAnimationDuration={460}
+              matrixColor="#e8521a"
+              resolvedColor="rgb(237,230,220)"
+              className="font-headline leading-none tracking-tighter"
+              style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)", fontWeight: 900 }}
+            />
+          </motion.div>
 
-        {/* Main Title */}
-        <h1
-          className="mt-8 text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight leading-[0.9] animate-fade-in"
-          style={{ animationDelay: "0.4s", opacity: 0 }}>
-          
-          <span className="text-foreground">Code. Innovate.</span>
-          <br />
-          <span className="text-gradient-primary glow-text">Learn.</span>
-        </h1>
+          {/* Tagline — Tiempos Text italic */}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.9, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif italic text-base sm:text-lg max-w-md mb-5 leading-relaxed"
+            style={{ color: "rgba(237,230,220,0.5)", fontWeight: 400 }}
+          >
+            The Bay Area's largest high school hackathon —<br />
+            500+ builders, 24 hours.
+          </motion.p>
 
-        {/* Tagline */}
-        <p
-          className="mt-6 text-lg sm:text-xl text-muted-foreground font-display max-w-2xl mx-auto animate-fade-in"
-          style={{ animationDelay: "0.6s", opacity: 0 }}>
-          
-          A unified Bay Area student hackathon where teams build, mentors guide, and big ideas take flight.
-          <br />
-          <span className="text-foreground/70">One weekend. Unlimited potential.</span>
-        </p>
+          {/* Info pills */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.1, duration: 0.4 }}
+            className="flex flex-wrap justify-center gap-2 mb-7"
+          >
+            {["24 Hours", "Grades 9–12", "$25K+ Prizes", "Free to Attend"].map((p) => (
+              <span key={p} className="px-3 py-1 rounded-full text-[11px] font-ui"
+                    style={{ background: "rgba(237,230,220,0.06)", border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.45)" }}>
+                {p}
+              </span>
+            ))}
+          </motion.div>
 
-        {/* Info pills */}
-        <div
-          className="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-in"
-          style={{ animationDelay: "0.8s", opacity: 0 }}>
-          
-          {[
-          { icon: "📅", text: "August 2026" },
-          { icon: "📍", text: "Bay Area, CA" },
-          { icon: "⏱", text: "24 Hours" },
-          { icon: "🎓", text: "Grades 9–12" }].
-          map((item) =>
-          <div
-            key={item.text}
-            className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-mono text-foreground/80">
-            
-              <span>{item.icon}</span>
-              <span>{item.text}</span>
+          {/* Countdown */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.25, duration: 0.5 }}
+            className="mb-8"
+          >
+            <p className="text-[9px] font-ui tracking-[0.28em] uppercase mb-3"
+               style={{ color: "rgba(237,230,220,0.25)" }}>
+              Countdown to hack
+            </p>
+            <div className="flex items-center gap-3">
+              <CountUnit value={time.days} label="Days" />
+              <span className="text-xl font-headline mb-4" style={{ color: "rgba(232,82,26,0.3)", fontWeight: 700 }}>:</span>
+              <CountUnit value={time.hours} label="Hrs" />
+              <span className="text-xl font-headline mb-4" style={{ color: "rgba(232,82,26,0.3)", fontWeight: 700 }}>:</span>
+              <CountUnit value={time.minutes} label="Min" />
+              <span className="text-xl font-headline mb-4" style={{ color: "rgba(232,82,26,0.3)", fontWeight: 700 }}>:</span>
+              <CountUnit value={time.seconds} label="Sec" />
             </div>
-          )}
-        </div>
+          </motion.div>
 
-        {/* CTAs */}
-        <div
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in"
-          style={{ animationDelay: "1s", opacity: 0 }}>
-          
-          <a
-            href="#register"
-            className="group relative px-8 py-3.5 rounded-xl bg-primary text-primary-foreground font-display font-semibold text-base hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-105 overflow-hidden">
-            
-            <span className="relative z-10">Register — Secure Your Spot</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-glow-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </a>
-          <a
-            href="https://discord.gg/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3.5 rounded-xl glow-border text-foreground font-display font-semibold text-base hover:bg-primary/5 transition-all duration-300">
-            
-            Join Discord
-          </a>
-        </div>
-
-        <p className="mt-3 text-xs text-muted-foreground font-mono animate-fade-in" style={{ animationDelay: "1.1s", opacity: 0 }}>
-          Open to students across the Bay Area. Team & solo-friendly.
-        </p>
-
-        {/* Countdown */}
-        <div
-          className="mt-14 animate-fade-in"
-          style={{ animationDelay: "1.2s", opacity: 0 }}>
-          
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-[0.3em] mb-4">
-            Countdown to hack
-          </p>
-          <div className="flex items-center justify-center gap-3 sm:gap-5">
-            <CountdownUnit value={time.days} label="Days" />
-            <span className="text-2xl text-primary/50 font-mono mt-[-20px]">:</span>
-            <CountdownUnit value={time.hours} label="Hours" />
-            <span className="text-2xl text-primary/50 font-mono mt-[-20px]">:</span>
-            <CountdownUnit value={time.minutes} label="Min" />
-            <span className="text-2xl text-primary/50 font-mono mt-[-20px]">:</span>
-            <CountdownUnit value={time.seconds} label="Sec" />
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div
-          className="mt-20 animate-fade-in"
-          style={{ animationDelay: "1.5s", opacity: 0 }}>
-          
-          
-
-
-          
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.45, duration: 0.4 }}
+            className="flex flex-col sm:flex-row items-center gap-3"
+          >
+            <SaveButton text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }} />
+            <a href="#about"
+               onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }) }}
+               className="px-7 py-3 rounded-full font-ui font-medium text-sm transition-all hover:bg-white/5"
+               style={{ border: "1px solid rgba(237,230,220,0.15)", color: "rgba(237,230,220,0.55)" }}>
+              Learn More
+            </a>
+          </motion.div>
         </div>
       </div>
-    </section>);
 
-};
-
-export default HeroSection;
+      {/* Scroll caret */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 3.0, duration: 0.5 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1.5"
+        style={{ color: "rgba(237,230,220,0.2)" }}
+      >
+        <span className="text-[9px] font-ui tracking-[0.25em] uppercase">scroll</span>
+        <motion.svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+          animate={{ y: [0, 4, 0] }}
+          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}>
+          <path d="M1 1L7 7L13 1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        </motion.svg>
+      </motion.div>
+    </section>
+  )
+}

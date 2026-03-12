@@ -1,15 +1,15 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ScheduleSection from "@/components/ScheduleSection";
-import SponsorsSection from "@/components/SponsorsSection";
-import FAQSection from "@/components/FAQSection";
-import CollaboratorsSection from "@/components/CollaboratorsSection";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar"
+import HeroSection from "@/components/HeroSection"
+import AboutSection from "@/components/AboutSection"
+import ScheduleSection from "@/components/ScheduleSection"
+import SponsorsSection from "@/components/SponsorsSection"
+import CollaboratorsSection from "@/components/CollaboratorsSection"
+import FAQSection from "@/components/FAQSection"
+import Footer from "@/components/Footer"
 
-const Index = () => {
+export default function Index() {
   return (
-    <div className="min-h-screen bg-background pt-24 md:pt-28">
+    <div className="min-h-screen" style={{ background: "rgb(18,9,4)" }}>
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -19,7 +19,5 @@ const Index = () => {
       <FAQSection />
       <Footer />
     </div>
-  );
-};
-
-export default Index;
+  )
+}
