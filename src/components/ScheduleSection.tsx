@@ -2,34 +2,21 @@ import { useState, useRef } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { MatrixText } from "@/components/ui/matrix-text"
 
-type Day = "friday" | "saturday" | "sunday"
+type Day = "saturday"
 interface Ev { time: string; title: string; desc: string; type: "main" | "workshop" | "food" | "fun" }
 
 const schedule: Record<Day, Ev[]> = {
-  friday: [
-    { time: "5:00 PM", title: "Doors Open & Check-in", desc: "Pick up your badge, swag bag, find your workspace.", type: "main" },
-    { time: "6:00 PM", title: "Opening Ceremony", desc: "Welcome, sponsor intros, and theme reveal.", type: "main" },
-    { time: "7:00 PM", title: "Dinner", desc: "Fuel up before hacking begins.", type: "food" },
-    { time: "7:30 PM", title: "Team Formation", desc: "Find teammates or solidify your squad.", type: "fun" },
-    { time: "8:00 PM", title: "Hacking Begins", desc: "The 24-hour clock starts now.", type: "main" },
-    { time: "9:00 PM", title: "Workshop: Intro to AI/ML", desc: "Build your first ML model with TensorFlow.", type: "workshop" },
-  ],
   saturday: [
-    { time: "12:00 AM", title: "Midnight Snacks", desc: "Pizza and energy drinks to keep you going.", type: "food" },
-    { time: "8:00 AM",  title: "Breakfast", desc: "Start the day right.", type: "food" },
-    { time: "10:00 AM", title: "Workshop: UI/UX Design", desc: "Design principles from industry professionals.", type: "workshop" },
+    { time: "8:00 AM",  title: "Doors Open & Check-in", desc: "Pick up your badge, swag bag, find your workspace.", type: "main" },
+    { time: "9:00 AM",  title: "Opening Ceremony", desc: "Welcome, sponsor intros, and theme reveal.", type: "main" },
+    { time: "10:00 AM", title: "Hacking Begins", desc: "The 14-hour clock starts now.", type: "main" },
     { time: "12:00 PM", title: "Lunch", desc: "Recharge with a catered lunch.", type: "food" },
-    { time: "2:00 PM",  title: "Workshop: Hardware Hacking", desc: "Hands-on with Arduino and Raspberry Pi.", type: "workshop" },
+    { time: "2:00 PM",  title: "Workshops", desc: "Learn from industry professionals.", type: "workshop" },
     { time: "4:00 PM",  title: "Mentor Office Hours", desc: "1-on-1 help from industry mentors.", type: "main" },
     { time: "6:00 PM",  title: "Dinner", desc: "Evening meal and socializing.", type: "food" },
-    { time: "7:00 PM",  title: "Game Night", desc: "Take a break with board games and trivia.", type: "fun" },
-  ],
-  sunday: [
-    { time: "8:00 AM",  title: "Breakfast + Final Push", desc: "Last breakfast before submissions.", type: "food" },
-    { time: "8:00 AM",  title: "Hacking Ends", desc: "Pencils down — submit your projects.", type: "main" },
-    { time: "9:00 AM",  title: "Project Expo & Demos", desc: "Present to judges and attendees.", type: "main" },
-    { time: "11:00 AM", title: "Judging & Deliberation", desc: "Judges review and score all submissions.", type: "main" },
-    { time: "12:00 PM", title: "Closing Ceremony & Prizes", desc: "Awards, shoutouts, and wrap-up.", type: "main" },
+    { time: "8:00 PM",  title: "Final Submissions", desc: "Pencils down — submit your projects.", type: "main" },
+    { time: "9:00 PM",  title: "Project Expo & Demos", desc: "Present to judges and attendees.", type: "main" },
+    { time: "10:00 PM", title: "Closing Ceremony & Prizes", desc: "Awards, shoutouts, and wrap-up.", type: "main" },
   ],
 }
 
@@ -38,7 +25,7 @@ const typeColor: Record<string, string> = {
 }
 
 const dayLabels: Record<Day, string> = {
-  friday: "Friday Aug 15", saturday: "Saturday Aug 16", sunday: "Sunday Aug 17",
+  saturday: "Saturday Apr 18",
 }
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -55,7 +42,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 export default function ScheduleSection() {
-  const [day, setDay] = useState<Day>("friday")
+  const [day, setDay] = useState<Day>("saturday")
 
   return (
     <section id="schedule" className="py-24 sm:py-32 px-6"
@@ -70,7 +57,7 @@ export default function ScheduleSection() {
 
         <Reveal delay={0.05}>
           <MatrixText
-            text="The weekend, roughly"
+            text="Saturday, April 18th"
             triggerOnView
             matrixColor="#e8521a"
             resolvedColor="rgb(237,230,220)"

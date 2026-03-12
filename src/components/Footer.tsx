@@ -16,14 +16,14 @@ export default function Footer() {
           </p>
           <p className="font-serif text-sm mb-8 italic"
              style={{ color: "rgba(237,230,220,0.32)" }}>
-            In person · August 15–17 · Bay Area · 100% free
+            In person · April 18 · Bay Area · 100% free
           </p>
           <div className="flex flex-wrap gap-3 items-center">
             <SaveButton text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }} />
-            <a href="mailto:hello@bayvalleyhacks.com"
+            <a href="mailto:bayvalleyhacks@gmail.com"
                className="px-6 py-3 rounded-full font-ui text-sm transition-all hover:bg-white/5"
                style={{ border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.4)" }}>
-              hello@bayvalleyhacks.com
+              bayvalleyhacks@gmail.com
             </a>
           </div>
         </div>

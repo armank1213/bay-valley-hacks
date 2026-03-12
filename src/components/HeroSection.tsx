@@ -5,7 +5,7 @@ import { GoldenGateBridge } from "@/components/GoldenGateBridge"
 import { MatrixText } from "@/components/ui/matrix-text"
 import { SaveButton } from "@/components/ui/save-button"
 
-const TARGET = new Date("2026-08-15T09:00:00")
+const TARGET = new Date("2026-04-18T08:00:00")
 
 function useCountdown() {
   const calc = useCallback(() => {
@@ -87,7 +87,7 @@ export default function HeroSection() {
             style={{ background: "rgba(232,82,26,0.12)", border: "1px solid rgba(232,82,26,0.28)", color: "#e8521a" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#e8521a] animate-pulse" />
-            August 15–17, 2026 · Bay Area, CA
+            April 18, 2026 · Bay Area, CA
           </motion.div>
 
           {/* Matrix title — MUCH bigger, Tiempos Headline Black */}
@@ -118,7 +118,7 @@ export default function HeroSection() {
             style={{ color: "rgba(237,230,220,0.5)", fontWeight: 400 }}
           >
             The Bay Area's largest high school hackathon —<br />
-            500+ builders, 24 hours.
+            500+ hackers, 14 hours.
           </motion.p>
 
           {/* Info pills */}
@@ -128,7 +128,7 @@ export default function HeroSection() {
             transition={{ delay: 2.1, duration: 0.4 }}
             className="flex flex-wrap justify-center gap-2 mb-7"
           >
-            {["24 Hours", "Grades 9–12", "$25K+ Prizes", "Free to Attend"].map((p) => (
+            {["14 Hours", "Grades 9–12", "$25K+ Prizes", "Free to Attend"].map((p) => (
               <span key={p} className="px-3 py-1 rounded-full text-[11px] font-ui"
                     style={{ background: "rgba(237,230,220,0.06)", border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.45)" }}>
                 {p}

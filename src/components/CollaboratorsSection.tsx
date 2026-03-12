@@ -4,16 +4,21 @@ import { MapPin } from "lucide-react"
 import { MatrixText } from "@/components/ui/matrix-text"
 
 const orgs = [
-  { name: "Dublin High Hack Club", city: "Dublin", focus: "Student-led hackathons & weekly builds" },
-  { name: "Foothill HS Computer Science Club", city: "Pleasanton", focus: "Competitive programming & project sprints" },
-  { name: "Amador Valley HS Coding Club", city: "Pleasanton", focus: "Beginner-friendly workshops & web dev" },
-  { name: "Granada HS Tech & Innovation", city: "Livermore", focus: "Hardware, apps, and community projects" },
+  { name: "MHHS Hackathon Club", city: "Mountain House", focus: "Student-run hackathons and tech community building" },
+  { name: "StellarHacks", city: "Pleasanton", focus: "High school hackathon organizing collective" },
+  { name: "CHS Hackathon Club", city: "Bay Area", focus: "Student-led innovation and competitive hacking" },
+  { name: "EastBayHacks", city: "East Bay", focus: "East Bay student hackathon community" },
+  { name: "BAHA", city: "Bay Area", focus: "Bay Area Hackathon Association" },
+  { name: "CoveHacks", city: "Bay Area", focus: "Student-organized hackathon network" },
 ]
 
-const cities = [
-  { name: "Pleasanton", sub: "Amador Valley & Foothill", left: "28%", top: "50%" },
-  { name: "Dublin", sub: "Dublin High Hack Club", left: "54%", top: "33%" },
-  { name: "Livermore", sub: "Granada HS Tech", left: "66%", top: "62%" },
+const pins = [
+  { name: "MHHS Hackathon Club", sub: "Mountain House", left: "44%", top: "44%" },
+  { name: "StellarHacks",        sub: "Pleasanton",     left: "62%", top: "22%" },
+  { name: "CHS Hackathon Club",  sub: "Bay Area",       left: "74%", top: "54%" },
+  { name: "EastBayHacks",        sub: "East Bay",       left: "55%", top: "70%" },
+  { name: "BAHA",                sub: "Bay Area",       left: "18%", top: "30%" },
+  { name: "CoveHacks",           sub: "Bay Area",       left: "22%", top: "62%" },
 ]
 
 function Reveal({ children, delay = 0, className = "" }: {
@@ -58,7 +63,7 @@ export default function CollaboratorsSection() {
           {/* Org list */}
           <div>
             {orgs.map((org, i) => (
-              <Reveal key={org.name} delay={0.08 + i * 0.08}>
+              <Reveal key={org.name} delay={0.08 + i * 0.07}>
                 <div className="flex gap-4 py-5" style={{ borderBottom: "1px solid rgba(237,230,220,0.07)" }}>
                   <div className="w-0.5 bg-[#e8521a] rounded-full shrink-0" style={{ minHeight: "44px" }} />
                   <div>
@@ -87,25 +92,25 @@ export default function CollaboratorsSection() {
                 ))}
               </svg>
 
-              {/* City pins */}
-              {cities.map((city, i) => (
-                <motion.div key={city.name}
+              {/* All 6 pins */}
+              {pins.map((pin, i) => (
+                <motion.div key={pin.name}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + i * 0.15, type: "spring", stiffness: 280 }}
+                  transition={{ delay: 0.6 + i * 0.12, type: "spring", stiffness: 280 }}
                   className="absolute flex flex-col items-start gap-1"
-                  style={{ left: city.left, top: city.top }}>
+                  style={{ left: pin.left, top: pin.top }}>
                   <div className="flex items-center gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#e8521a]"
                          style={{ boxShadow: "0 0 10px rgba(232,82,26,0.5)" }} />
                     <span className="text-[10px] font-ui tracking-wider uppercase"
                           style={{ color: "rgba(237,230,220,0.6)" }}>
-                      {city.name}
+                      {pin.name}
                     </span>
                   </div>
                   <span className="text-[9px] font-ui rounded-full px-2 py-0.5 ml-4"
                         style={{ background: "rgba(232,82,26,0.1)", color: "rgba(237,230,220,0.5)" }}>
-                    {city.sub}
+                    {pin.sub}
                   </span>
                 </motion.div>
               ))}
@@ -113,7 +118,7 @@ export default function CollaboratorsSection() {
               <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-lg px-3 py-1.5 text-[10px] font-ui"
                    style={{ background: "rgba(26,24,21,0.9)", border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.35)" }}>
                 <div className="w-2 h-2 rounded-full bg-[#e8521a]" />
-                Partner organization
+                Partner organizations
               </div>
             </div>
           </Reveal>

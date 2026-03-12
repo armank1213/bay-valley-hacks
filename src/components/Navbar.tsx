@@ -16,26 +16,45 @@ function scrollTo(href: string) {
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const [hovered, setHovered] = useState(false)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 60)
+    let lastScrollY = 0
+    const fn = () => {
+      const y = window.scrollY
+      setScrolled(y > 60)
+      if (y < 60) {
+        setHidden(false)
+      } else if (y > lastScrollY + 6) {
+        setHidden(true)
+        setOpen(false)
+      } else if (y < lastScrollY - 4) {
+        setHidden(false)
+      }
+      lastScrollY = y
+    }
     window.addEventListener("scroll", fn, { passive: true })
     return () => window.removeEventListener("scroll", fn)
   }, [])
 
-  // on hero: transparent pill; once past hero: dark gray pill
+  const visible = !hidden || hovered
+
   const bg = scrolled ? "rgba(32,30,27,0.96)" : "rgba(255,255,255,0.06)"
   const textColor = scrolled ? "rgba(237,230,220,0.75)" : "rgba(237,230,220,0.65)"
   const borderColor = scrolled ? "rgba(60,55,50,0.9)" : "rgba(255,255,255,0.1)"
-  const logoColor = scrolled ? "rgb(237,230,220)" : "rgb(237,230,220)"
 
   return (
-    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+    <div
+      className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <motion.div
         initial={{ opacity: 0, y: -14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : -20 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className="w-full max-w-4xl"
       >
         <div
@@ -53,7 +72,7 @@ export default function Navbar() {
              className="flex items-center gap-2 shrink-0">
             <img src="/logo.ico" alt="BVH" className="w-6 h-6 rounded-md" />
             <span className="font-display font-bold text-xs tracking-wide hidden sm:block"
-                  style={{ color: logoColor, transition: "color 0.3s" }}>
+                  style={{ color: "rgb(237,230,220)", transition: "color 0.3s" }}>
               Bay Valley Hacks
             </span>
           </a>
@@ -63,7 +82,7 @@ export default function Navbar() {
             {links.map((l) => (
               <button key={l.label} onClick={() => scrollTo(l.href)}
                       className="px-3 py-1.5 text-xs font-ui font-medium tracking-wide rounded-lg transition-all hover:bg-black/5"
-                      style={{ color: textColor, transition: "color 0.3s" }}>
+                      style={{ color: textColor }}>
                 {l.label}
               </button>
             ))}

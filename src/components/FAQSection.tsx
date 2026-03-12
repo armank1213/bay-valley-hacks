@@ -7,10 +7,10 @@ const faqs = [
   { q: "Who can come?", a: "Any high school student (grades 9–12). No coding experience required — complete beginners and seasoned hackers are both welcome." },
   { q: "Do I need a team?", a: "No. Register solo and find teammates at our team formation session at the start of the event. Teams are up to 4 people." },
   { q: "Is it actually free?", a: "Yes. All meals, snacks, swag, and workspace are covered. Thanks to our sponsors." },
-  { q: "What about hardware?", a: "We're building a hardware lab with soldering stations, microcontrollers, and sensors. Build whatever you want." },
+  { q: "What are the tracks?", a: "We have five tracks: Best Overall, Best AI/ML, Best Fintech, Best Hardware, and Best BioTech." },
   { q: "What should I bring?", a: "Your laptop, charger, and any hardware you want to hack with. We handle the rest." },
   { q: "Do I need to know how to code?", a: "Not at all. Workshops for beginners, mentors to help, and tracks suited to all skill levels." },
-  { q: "What are the prizes?", a: "Over $25,000 across tracks: Best Overall, Best AI/ML, Best Hardware, Best Civic Tech, and more." },
+  { q: "What are the prizes?", a: "Over $25,000 across tracks: Best Overall, Best AI/ML, Best Fintech, Best Hardware, and Best BioTech." },
   { q: "Code of conduct?", a: "We follow the MLH Code of Conduct. Bay Valley Hacks is a safe, inclusive, harassment-free space." },
 ]
 
@@ -90,9 +90,9 @@ export default function FAQSection() {
           className="mt-10 text-sm font-ui"
           style={{ color: "rgba(237,230,220,0.35)" }}>
           More questions?{" "}
-          <a href="mailto:hello@bayvalleyhacks.com"
+          <a href="mailto:bayvalleyhacks@gmail.com"
              className="underline underline-offset-2 hover:text-[#e8521a] transition-colors">
-            hello@bayvalleyhacks.com
+            bayvalleyhacks@gmail.com
           </a>
         </motion.p>
       </div>

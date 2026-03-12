@@ -20,10 +20,10 @@ function Reveal({ children, delay = 0, className = "" }: {
 }
 
 const tiers = [
-  { name: "Partners", slots: ["Become a partner →", "Your company here →", "Let's talk →"], h: 80, minW: 180 },
-  { name: "Gold",     slots: ["Sponsor us", "Open spot", "You?"],                          h: 68, minW: 150 },
-  { name: "Silver",   slots: ["+", "+", "+", "+"],                                         h: 56, minW: 110 },
-  { name: "Bronze",   slots: ["+", "+", "+", "+", "+", "+"],                               h: 48, minW: 90  },
+  { name: "Partners", slots: ["+", "+", "+"], h: 80, minW: 180 },
+  { name: "Gold",     slots: ["+", "+", "+"],          h: 68, minW: 150 },
+  { name: "Silver",   slots: ["+", "+", "+", "+"],     h: 56, minW: 110 },
+  { name: "Bronze",   slots: ["+", "+", "+", "+", "+", "+"], h: 48, minW: 90  },
 ]
 
 export default function SponsorsSection() {

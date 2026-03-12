@@ -19,7 +19,7 @@ function Reveal({ children, delay = 0, className = "" }: {
 
 const stats = [
   { value: "500+", label: "Hackers" },
-  { value: "24", label: "Hours" },
+  { value: "14", label: "Hours" },
   { value: "$25K+", label: "In prizes" },
   { value: "100%", label: "Free" },
 ]
@@ -37,7 +37,7 @@ export default function AboutSection() {
 
         <Reveal delay={0.05}>
           <MatrixText
-            text="500 hackers. 24 hours."
+            text="500 hackers. 14 hours."
             triggerOnView
             matrixColor="#e8521a"
             resolvedColor="rgb(237,230,220)"
@@ -54,7 +54,7 @@ export default function AboutSection() {
               When &amp; Where
             </p>
             <p className="font-serif text-base font-medium" style={{ color: "rgb(237,230,220)" }}>
-              August 15–17, 2026
+              April 18, 2026
             </p>
             <p className="font-serif text-base mt-0.5" style={{ color: "rgba(237,230,220,0.5)" }}>
               Bay Area, CA · In-person
@@ -96,21 +96,7 @@ export default function AboutSection() {
           </div>
         </Reveal>
 
-        {/* Hardware callout */}
-        <Reveal delay={0.22} className="mt-10">
-          <div className="flex gap-4 p-5 rounded-xl"
-               style={{ background: "rgba(237,230,220,0.04)", border: "1px solid rgba(237,230,220,0.08)" }}>
-            <div className="w-0.5 rounded-full shrink-0 bg-[#e8521a]" style={{ minHeight: "100%" }} />
-            <div>
-              <p className="font-serif font-semibold text-sm mb-1" style={{ color: "rgb(237,230,220)" }}>
-                Hardware lab included
-              </p>
-              <p className="font-serif text-sm leading-relaxed" style={{ color: "rgba(237,230,220,0.5)" }}>
-                Soldering stations, microcontrollers, sensors, and more. If you want to build something physical, you'll have what you need.
-              </p>
-            </div>
-          </div>
-        </Reveal>
+
       </div>
     </section>
   )
