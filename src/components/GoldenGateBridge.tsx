@@ -57,7 +57,7 @@ export function GoldenGateBridge() {
     })
 
     // ── Helper: create one tower ───────────────────────────────────────────
-    const makeTower = (xPos: number) => {
+    const makeTower = (xPos: number, rotY = 0) => {
       const g = new THREE.Group()
       // 4 vertical legs: (±0.3, center, ±0.48)
       const legH = 7.0
@@ -99,10 +99,11 @@ export function GoldenGateBridge() {
       })
 
       g.position.set(xPos, 0, 0)
+      g.rotation.y = rotY
       return g
     }
 
-    scene.add(makeTower(-4))
+    scene.add(makeTower(-4, 0.5))
     scene.add(makeTower(4))
 
     // ── Main suspension cables ─────────────────────────────────────────────
