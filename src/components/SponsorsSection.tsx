@@ -48,8 +48,12 @@ export default function SponsorsSection() {
           </Reveal>
           <Reveal delay={0.08}>
             <div className="flex flex-wrap gap-4 text-sm font-ui" style={{ color: "rgba(237,230,220,0.35)" }}>
-              <a href="/prospectus.pdf" className="hover:text-[#e8521a] transition-colors">View Prospectus</a>
-              <a href={MAILTO} className="hover:text-[#e8521a] transition-colors">sponsors@bayvalleyhacks.com</a>
+              <a href="https://drive.google.com/file/d/1IvsVs252QljS-41NxoOR9AjUO6RVwS8j/view?usp=sharing"
+                 target="_blank" rel="noopener noreferrer"
+                 className="px-3 py-1.5 rounded-lg border transition-all hover:text-[#e8521a] hover:border-[#e8521a]/60"
+                 style={{ borderColor: "rgba(237,230,220,0.2)", color: "rgba(237,230,220,0.7)" }}>
+                View Prospectus
+              </a>
             </div>
           </Reveal>
         </div>
@@ -94,15 +98,10 @@ export default function SponsorsSection() {
         </div>
 
         <Reveal delay={0.45} className="mt-12 flex flex-wrap gap-3">
-          <a href={MAILTO}
+          <a href="mailto:bayvalleyhacks@gmail.com"
              className="px-5 py-2.5 rounded-lg font-ui font-semibold text-sm transition-all hover:bg-[#e8521a]/10"
              style={{ border: "1.5px solid #e8521a", color: "#e8521a" }}>
             Become a partner
-          </a>
-          <a href={MAILTO}
-             className="px-5 py-2.5 rounded-lg font-ui text-sm transition-all hover:border-[rgba(237,230,220,0.25)]"
-             style={{ border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.4)" }}>
-            sponsors@bayvalleyhacks.com
           </a>
         </Reveal>
       </div>

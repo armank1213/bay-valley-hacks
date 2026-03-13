@@ -12,8 +12,6 @@ const tracks = [
               stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    gradient: "linear-gradient(135deg, rgba(232,82,26,0.15), rgba(255,170,80,0.08))",
-    glow: "rgba(232,82,26,0.3)",
   },
   {
     name: "Best AI/ML",
@@ -24,8 +22,6 @@ const tracks = [
         <path d="M8 12h8M12 8v8M7 7l2 2M15 7l2 2M7 17l2-2M15 17l2-2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
       </svg>
     ),
-    gradient: "linear-gradient(135deg, rgba(100,180,255,0.12), rgba(160,120,255,0.08))",
-    glow: "rgba(100,180,255,0.25)",
   },
   {
     name: "Best Fintech",
@@ -35,8 +31,6 @@ const tracks = [
         <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    gradient: "linear-gradient(135deg, rgba(74,220,130,0.12), rgba(34,197,94,0.06))",
-    glow: "rgba(74,220,130,0.25)",
   },
   {
     name: "Best Hardware",
@@ -48,8 +42,6 @@ const tracks = [
         <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
       </svg>
     ),
-    gradient: "linear-gradient(135deg, rgba(255,200,60,0.12), rgba(232,160,26,0.06))",
-    glow: "rgba(255,200,60,0.25)",
   },
   {
     name: "Best BioTech",
@@ -60,8 +52,6 @@ const tracks = [
         <path d="M12 2v10M8.5 7.5c2-1 5-1 7 0M7 12c2.5-1.5 7.5-1.5 10 0" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
       </svg>
     ),
-    gradient: "linear-gradient(135deg, rgba(180,120,255,0.12), rgba(140,80,220,0.06))",
-    glow: "rgba(180,120,255,0.25)",
   },
 ]
 
@@ -82,23 +72,24 @@ function TrackCard({ track, index }: { track: typeof tracks[0]; index: number })
     >
       <motion.div
         animate={{
-          scale: hovered ? 1.02 : 1,
-          y: hovered ? -4 : 0,
+          scale: hovered ? 1.01 : 1,
+          y: hovered ? -2 : 0,
         }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className="relative rounded-2xl p-6 sm:p-7 overflow-hidden cursor-default h-full"
         style={{
-          background: track.gradient,
-          border: `1px solid ${hovered ? "rgba(237,230,220,0.12)" : "rgba(237,230,220,0.06)"}`,
+          background: "rgba(26,24,21,0.9)",
+          border: `1px solid ${hovered ? "rgba(232,82,26,0.3)" : "rgba(237,230,220,0.08)"}`,
           transition: "border-color 0.3s",
+          boxShadow: "inset 0 0 40px rgba(0,0,0,0.35)",
         }}
       >
-        {/* Glow orb on hover */}
+        {/* Ambient accent */}
         <motion.div
-          className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none"
-          animate={{ opacity: hovered ? 0.6 : 0 }}
+          className="absolute -top-20 -right-20 w-44 h-44 rounded-full blur-3xl pointer-events-none"
+          animate={{ opacity: hovered ? 0.3 : 0.08 }}
           transition={{ duration: 0.4 }}
-          style={{ background: track.glow }}
+          style={{ background: "rgba(232,82,26,0.25)" }}
         />
 
         {/* Noise texture */}
@@ -112,9 +103,9 @@ function TrackCard({ track, index }: { track: typeof tracks[0]; index: number })
           {/* Icon */}
           <div className="mb-4 inline-flex items-center justify-center w-10 h-10 rounded-xl"
                style={{
-                 background: "rgba(237,230,220,0.06)",
-                 border: "1px solid rgba(237,230,220,0.08)",
-                 color: "rgba(237,230,220,0.6)",
+                 background: "rgba(237,230,220,0.04)",
+                 border: "1px solid rgba(237,230,220,0.1)",
+                 color: hovered ? "#e8521a" : "rgba(237,230,220,0.7)",
                }}>
             {track.icon}
           </div>
@@ -127,13 +118,13 @@ function TrackCard({ track, index }: { track: typeof tracks[0]; index: number })
 
           {/* Title */}
           <h3 className="font-headline font-semibold text-lg mb-2"
-              style={{ color: "rgb(237,230,220)" }}>
+              style={{ color: "rgba(237,230,220,0.9)" }}>
             {track.name}
           </h3>
 
           {/* Desc */}
           <p className="font-serif text-sm leading-relaxed"
-             style={{ color: "rgba(237,230,220,0.45)" }}>
+             style={{ color: "rgba(237,230,220,0.4)" }}>
             {track.desc}
           </p>
         </div>

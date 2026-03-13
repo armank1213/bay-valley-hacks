@@ -37,7 +37,12 @@ export default function Footer() {
             In person · April 18 · Bay Area · 100% free
           </p>
           <div className="flex flex-wrap gap-3 items-center justify-center">
-            <SaveButton text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }} />
+            <SaveButton
+              text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }}
+              href="https://luma.com/6fla5nan"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
             <a href="mailto:bayvalleyhacks@gmail.com"
                className="px-6 py-3 rounded-full font-ui text-sm transition-all hover:bg-white/5 hover:border-[rgba(237,230,220,0.2)]"
                style={{ border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.4)" }}>
@@ -67,8 +72,8 @@ export default function Footer() {
               { label: "Tracks", onClick: () => scrollTo("#tracks") },
               { label: "Schedule", onClick: () => scrollTo("#schedule") },
               { label: "FAQ", onClick: () => scrollTo("#faq") },
-              { label: "Instagram", href: "https://instagram.com/bayvalleyhacks" },
-              { label: "Discord", href: "https://discord.gg/" },
+              { label: "Instagram", href: "https://www.instagram.com/bay_valley_hacks?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr"},
+              { label: "Discord", href: "https://discord.gg/RUDS4Znz" },
             ].map((l) => "href" in l ? (
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
                  className="text-xs font-ui hover:text-[#e8521a] transition-colors"

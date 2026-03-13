@@ -10,14 +10,21 @@ interface SaveButtonProps {
   text?: { idle?: string; saving?: string; saved?: string }
   className?: string
   onSave?: () => Promise<void> | void
+  href?: string
+  target?: string
+  rel?: string
 }
 
 export function SaveButton({
   text = { idle: "Apply", saving: "Sending...", saved: "You're in!" },
   className,
   onSave,
+  href,
+  target,
+  rel,
 }: SaveButtonProps) {
   const [status, setStatus] = useState<"idle" | "saving" | "saved">("idle")
+  const isLink = Boolean(href)
 
   const handleClick = async () => {
     if (status !== "idle") return
@@ -47,6 +54,25 @@ export function SaveButton({
 
   const fg =
     status === "idle" ? "rgb(26,24,21)" : "white"
+
+  if (isLink) {
+    return (
+      <motion.a
+        href={href}
+        target={target}
+        rel={rel}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
+        className={cn(
+          "relative inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full font-ui font-semibold text-sm cursor-pointer overflow-hidden",
+          className
+        )}
+        style={{ minWidth: "150px", backgroundColor: "rgb(237,230,220)", color: "rgb(26,24,21)" }}
+      >
+        {text.idle}
+      </motion.a>
+    )
+  }
 
   return (
     <motion.button

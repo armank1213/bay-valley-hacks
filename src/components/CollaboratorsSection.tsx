@@ -31,7 +31,7 @@ const collaborators = [
   {
     org: "CoveHacks",
     leads: ["Shlok Madhekar"],
-    organizers: ["Neil Bharwani", "Neel Patil", "Gia Vimal", "Dhiaan Dave", "Anish Dhamija", "Varshith Gude", "Pranauv Muthuraman", "Andrew Savio", "Devin Liu", "Shreyan Mitra"],
+    organizers: ["Neil Bharwani", "Neel Patil", "Gia Vimal", "Dhiaan Dave", "Anish Dhamija", "Varshith Gude", "Pranauv Muthuraman", "Andrew Savio", "Sai Uppu", "Shreyan Mitra"],
   },
 ]
 
