@@ -92,7 +92,7 @@ export default function Navbar() {
 
           {/* Right */}
           <div className="hidden md:flex items-center gap-2">
-            <a href="https://discord.gg/RUDS4Znz" target="_blank" rel="noopener noreferrer"
+            <a href="https://discord.gg/mTDYjmsBrb" target="_blank" rel="noopener noreferrer"
                className="p-1.5 rounded-lg transition-all hover:bg-black/5"
                style={{ color: textColor }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
