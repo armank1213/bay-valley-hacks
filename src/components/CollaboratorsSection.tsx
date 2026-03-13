@@ -24,7 +24,7 @@ const collaborators = [
     organizers: ["Gautam Bhagavan", "Owen Cheng", "Adam Zheng", "Kamron", "Boston"],
   },
   {
-    org: "BAHA",
+    org: "BaHa",
     leads: ["Pranauv Muthuraman", "Nandan Pericherla"],
     organizers: ["Sunay Kaushal"],
   },
