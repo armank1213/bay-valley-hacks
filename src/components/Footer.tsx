@@ -73,7 +73,7 @@ export default function Footer() {
               { label: "Schedule", onClick: () => scrollTo("#schedule") },
               { label: "FAQ", onClick: () => scrollTo("#faq") },
               { label: "Instagram", href: "https://www.instagram.com/bay_valley_hacks?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr"},
-              { label: "Discord", href: "https://discord.gg/RUDS4Znz" },
+              { label: "Discord", href: "https://discord.gg/RUDS4Znz"},
             ].map((l) => "href" in l ? (
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
                  className="text-xs font-ui hover:text-[#e8521a] transition-colors"
