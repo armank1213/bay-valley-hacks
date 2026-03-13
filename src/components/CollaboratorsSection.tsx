@@ -10,12 +10,12 @@ const collaborators = [
   },
   {
     org: "StellarHacks",
-    leads: ["Aditya Sujith"],
+    leads: ["Aditya Sujith", "Agastya Kuluvalli"],
     organizers: ["Niti Jain", "Arnav Bajjuri", "Raina Sarkar", "Mira Diwan", "Harshita Pandey", "Veera Jain", "Arnav Sharma", "Adyuth Chirakala", "Gia Vimal", "Ansh Suba", "Ruhan Mitra", "Aarushi Gupta", "Aarav Bhagya", "Shuvam Kumar Das"],
   },
   {
     org: "CHS Hackathon Club",
-    leads: ["Pranauv Muthuraman", "Nandan Pericherla"],
+    leads: ["Pranauv Muthuraman", "Ashmit Pai"],
     organizers: ["Sunay Kaushal", "Dimitri Saha", "Vaibhav Mirayala", "Ron Datta Chowdhury"],
   },
   {
@@ -26,7 +26,7 @@ const collaborators = [
   {
     org: "BAHA",
     leads: ["Pranauv Muthuraman", "Nandan Pericherla"],
-    organizers: [""],
+    organizers: ["Sunay Kaushal"],
   },
   {
     org: "CoveHacks",
