@@ -25,8 +25,8 @@ const collaborators = [
   },
   {
     org: "BaHa",
-    leads: ["Pranauv Muthuraman", "Nandan Pericherla"],
-    organizers: ["Sunay Kaushal"],
+    leads: ["Nandan Pericherla", "Pranauv Muthuraman"],
+    organizers: ["Sunay Kaushal", "Chaitu Dupad"]
   },
   {
     org: "CoveHacks",
