@@ -94,7 +94,7 @@ export default function SponsorsSection() {
                        border: "1px solid rgba(237,230,220,0.15)",
                      }}>
                     <img src={s.logo} alt={s.name}
-                         style={{ maxHeight: `${tier.h * 0.6}px`, maxWidth: "140px", objectFit: "contain" }} />
+                         style={{ maxHeight: `${tier.h * 0.85}px`, maxWidth: "180px", objectFit: "contain" }} />
                   </a>
                 ))}
                 {Array.from({ length: tier.emptySlots }).map((_, si) => (
