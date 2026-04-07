@@ -5,7 +5,7 @@ import { GoldenGateBridge } from "@/components/GoldenGateBridge"
 import { MatrixText } from "@/components/ui/matrix-text"
 import { SaveButton } from "@/components/ui/save-button"
 
-const TARGET = new Date("2026-04-18T08:00:00")
+const TARGET = new Date("2026-06-20T08:00:00")
 
 function useCountdown() {
   const calc = useCallback(() => {
@@ -87,7 +87,7 @@ export default function HeroSection() {
             style={{ background: "rgba(232,82,26,0.12)", border: "1px solid rgba(232,82,26,0.28)", color: "#e8521a" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#e8521a] animate-pulse" />
-            April 18, 2026 · Bay Area, CA
+            June 20, 2026 · Bay Area, CA
           </motion.div>
 
           {/* Matrix title — MUCH bigger, Tiempos Headline Black */}
@@ -165,7 +165,12 @@ export default function HeroSection() {
             transition={{ delay: 2.45, duration: 0.4 }}
             className="flex flex-col sm:flex-row items-center gap-3"
           >
-            <SaveButton text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }} />
+            <SaveButton
+              text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }}
+              href="https://luma.com/6fla5nan"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
             <a href="#about"
                onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }) }}
                className="px-7 py-3 rounded-full font-ui font-medium text-sm transition-all hover:bg-white/5"
@@ -175,22 +180,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll caret */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 3.0, duration: 0.5 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1.5"
-        style={{ color: "rgba(237,230,220,0.2)" }}
-      >
-        <span className="text-[9px] font-ui tracking-[0.25em] uppercase">scroll</span>
-        <motion.svg width="14" height="8" viewBox="0 0 14 8" fill="none"
-          animate={{ y: [0, 4, 0] }}
-          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}>
-          <path d="M1 1L7 7L13 1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </motion.svg>
-      </motion.div>
     </section>
   )
 }

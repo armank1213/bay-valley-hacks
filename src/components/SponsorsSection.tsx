@@ -19,6 +19,13 @@ function Reveal({ children, delay = 0, className = "" }: {
   )
 }
 
+const platinumSponsors = [
+  { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/", bg: "#2d6be4" },
+  { name: "Figma",     logo: "/sponsors/figma.png",    url: "https://www.figma.com/", bg: "#f5f5f5" },
+  { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/", bg: "#000000" },
+  { name: "Portal",    logo: "/sponsors/portal.png",   url: "https://www.portal.so/", bg: "#111111" },
+]
+
 const tiers = [
   { name: "Partners", slots: ["+", "+", "+"], h: 80, minW: 180 },
   { name: "Gold",     slots: ["+", "+", "+"],          h: 68, minW: 150 },
@@ -48,8 +55,12 @@ export default function SponsorsSection() {
           </Reveal>
           <Reveal delay={0.08}>
             <div className="flex flex-wrap gap-4 text-sm font-ui" style={{ color: "rgba(237,230,220,0.35)" }}>
-              <a href="/prospectus.pdf" className="hover:text-[#e8521a] transition-colors">View Prospectus</a>
-              <a href={MAILTO} className="hover:text-[#e8521a] transition-colors">sponsors@bayvalleyhacks.com</a>
+              <a href="https://drive.google.com/file/d/1IvsVs252QljS-41NxoOR9AjUO6RVwS8j/view?usp=sharing"
+                 target="_blank" rel="noopener noreferrer"
+                 className="px-3 py-1.5 rounded-lg border transition-all hover:text-[#e8521a] hover:border-[#e8521a]/60"
+                 style={{ borderColor: "rgba(237,230,220,0.2)", color: "rgba(237,230,220,0.7)" }}>
+                View Prospectus
+              </a>
             </div>
           </Reveal>
         </div>
@@ -62,6 +73,33 @@ export default function SponsorsSection() {
         </Reveal>
 
         <div className="flex flex-col gap-10">
+          {/* Platinum Tier */}
+          <Reveal delay={0.12}>
+            <div className="flex items-center gap-4 mb-5">
+              <span className="text-xs font-ui tracking-[0.22em] uppercase"
+                    style={{ color: "rgba(229,195,120,0.7)" }}>
+                Platinum
+              </span>
+              <div className="flex-1 h-px" style={{ background: "rgba(229,195,120,0.2)" }} />
+            </div>
+            <div className="flex flex-wrap gap-4">
+              {platinumSponsors.map((s) => (
+                <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
+                   className="flex items-center justify-center rounded-xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                   style={{
+                     height: "90px",
+                     minWidth: "200px",
+                     padding: "0 24px",
+                     background: s.bg,
+                     border: "1px solid rgba(229,195,120,0.25)",
+                   }}>
+                  <img src={s.logo} alt={s.name}
+                       style={{ maxHeight: "52px", maxWidth: "160px", objectFit: "contain" }} />
+                </a>
+              ))}
+            </div>
+          </Reveal>
+
           {tiers.map((tier, ti) => (
             <Reveal key={tier.name} delay={0.12 + ti * 0.08}>
               <div className="flex items-center gap-4 mb-5">
@@ -94,15 +132,10 @@ export default function SponsorsSection() {
         </div>
 
         <Reveal delay={0.45} className="mt-12 flex flex-wrap gap-3">
-          <a href={MAILTO}
+          <a href="mailto:bayvalleyhacks@gmail.com"
              className="px-5 py-2.5 rounded-lg font-ui font-semibold text-sm transition-all hover:bg-[#e8521a]/10"
              style={{ border: "1.5px solid #e8521a", color: "#e8521a" }}>
             Become a partner
-          </a>
-          <a href={MAILTO}
-             className="px-5 py-2.5 rounded-lg font-ui text-sm transition-all hover:border-[rgba(237,230,220,0.25)]"
-             style={{ border: "1px solid rgba(237,230,220,0.1)", color: "rgba(237,230,220,0.4)" }}>
-            sponsors@bayvalleyhacks.com
           </a>
         </Reveal>
       </div>

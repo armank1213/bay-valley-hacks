@@ -29,7 +29,7 @@ const typeLabel: Record<string, string> = {
 }
 
 const dayLabels: Record<Day, string> = {
-  saturday: "Saturday Apr 18",
+  saturday: "Saturday Jun 20",
 }
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -61,7 +61,7 @@ export default function ScheduleSection() {
 
         <Reveal delay={0.05}>
           <MatrixText
-            text="Saturday, April 18th"
+            text="Saturday, June 20th"
             triggerOnView
             matrixColor="#e8521a"
             resolvedColor="rgb(237,230,220)"
