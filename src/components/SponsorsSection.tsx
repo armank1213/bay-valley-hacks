@@ -19,18 +19,18 @@ function Reveal({ children, delay = 0, className = "" }: {
   )
 }
 
-const platinumSponsors = [
-  { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/", bg: "#2d6be4" },
-  { name: "Figma",     logo: "/sponsors/figma.png",    url: "https://www.figma.com/", bg: "#f5f5f5" },
-  { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/", bg: "#000000" },
-  { name: "Portal",    logo: "/sponsors/portal.png",   url: "https://www.portal.so/", bg: "#111111" },
-]
-
 const tiers = [
-  { name: "Partners", slots: ["+", "+", "+"], h: 80, minW: 180 },
-  { name: "Gold",     slots: ["+", "+", "+"],          h: 68, minW: 150 },
-  { name: "Silver",   slots: ["+", "+", "+", "+"],     h: 56, minW: 110 },
-  { name: "Bronze",   slots: ["+", "+", "+", "+", "+", "+"], h: 48, minW: 90  },
+  { name: "Partners", h: 80, minW: 180, sponsors: [], emptySlots: 3 },
+  { name: "Gold",     h: 68, minW: 150, sponsors: [
+      { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/", bg: "#000000" },
+    ], emptySlots: 2 },
+  { name: "Silver",   h: 56, minW: 110, sponsors: [
+      { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/", bg: "#2d6be4" },
+    ], emptySlots: 3 },
+  { name: "Bronze",   h: 48, minW: 90,  sponsors: [
+      { name: "Figma",  logo: "/sponsors/figma.png",   url: "https://www.figma.com/",    bg: "#f5f5f5" },
+      { name: "Portal", logo: "/sponsors/portal.png",  url: "https://www.portal.so/",    bg: "#111111" },
+    ], emptySlots: 4 },
 ]
 
 export default function SponsorsSection() {
@@ -73,33 +73,6 @@ export default function SponsorsSection() {
         </Reveal>
 
         <div className="flex flex-col gap-10">
-          {/* Platinum Tier */}
-          <Reveal delay={0.12}>
-            <div className="flex items-center gap-4 mb-5">
-              <span className="text-xs font-ui tracking-[0.22em] uppercase"
-                    style={{ color: "rgba(229,195,120,0.7)" }}>
-                Platinum
-              </span>
-              <div className="flex-1 h-px" style={{ background: "rgba(229,195,120,0.2)" }} />
-            </div>
-            <div className="flex flex-wrap gap-4">
-              {platinumSponsors.map((s) => (
-                <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
-                   className="flex items-center justify-center rounded-xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                   style={{
-                     height: "90px",
-                     minWidth: "200px",
-                     padding: "0 24px",
-                     background: s.bg,
-                     border: "1px solid rgba(229,195,120,0.25)",
-                   }}>
-                  <img src={s.logo} alt={s.name}
-                       style={{ maxHeight: "52px", maxWidth: "160px", objectFit: "contain" }} />
-                </a>
-              ))}
-            </div>
-          </Reveal>
-
           {tiers.map((tier, ti) => (
             <Reveal key={tier.name} delay={0.12 + ti * 0.08}>
               <div className="flex items-center gap-4 mb-5">
@@ -110,7 +83,21 @@ export default function SponsorsSection() {
                 <div className="flex-1 h-px" style={{ background: "rgba(237,230,220,0.07)" }} />
               </div>
               <div className="flex flex-wrap gap-3">
-                {tier.slots.map((label, si) => (
+                {tier.sponsors.map((s) => (
+                  <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
+                     className="flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-0.5"
+                     style={{
+                       height: `${tier.h}px`,
+                       minWidth: `${tier.minW}px`,
+                       padding: "0 20px",
+                       background: s.bg,
+                       border: "1px solid rgba(237,230,220,0.15)",
+                     }}>
+                    <img src={s.logo} alt={s.name}
+                         style={{ maxHeight: `${tier.h * 0.6}px`, maxWidth: "140px", objectFit: "contain" }} />
+                  </a>
+                ))}
+                {Array.from({ length: tier.emptySlots }).map((_, si) => (
                   <a key={si} href={MAILTO}
                      className="flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-0.5 group"
                      style={{
@@ -122,7 +109,7 @@ export default function SponsorsSection() {
                      }}>
                     <span className="text-sm font-ui group-hover:text-[#e8521a] transition-colors duration-150"
                           style={{ color: "rgba(237,230,220,0.25)" }}>
-                      {label}
+                      +
                     </span>
                   </a>
                 ))}
