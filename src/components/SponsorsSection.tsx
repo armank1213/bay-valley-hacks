@@ -21,13 +21,13 @@ function Reveal({ children, delay = 0, className = "" }: {
 
 const tiers = [
   { name: "Partners", h: 80, minW: 180, sponsors: [], emptySlots: 3 },
-  { name: "Gold",     h: 68, minW: 150, sponsors: [
+  { name: "Gold",     h: 90, minW: 220, sponsors: [
       { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/", bg: "#000000" },
     ], emptySlots: 2 },
-  { name: "Silver",   h: 56, minW: 110, sponsors: [
+  { name: "Silver",   h: 80, minW: 200, sponsors: [
       { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/", bg: "#2d6be4" },
     ], emptySlots: 3 },
-  { name: "Bronze",   h: 48, minW: 90,  sponsors: [
+  { name: "Bronze",   h: 70, minW: 180, sponsors: [
       { name: "Figma",  logo: "/sponsors/figma.png",   url: "https://www.figma.com/",    bg: "#f5f5f5" },
       { name: "Portal", logo: "/sponsors/portal.png",  url: "https://www.portal.so/",    bg: "#111111" },
     ], emptySlots: 4 },
@@ -94,7 +94,7 @@ export default function SponsorsSection() {
                        border: "1px solid rgba(237,230,220,0.15)",
                      }}>
                     <img src={s.logo} alt={s.name}
-                         style={{ maxHeight: `${tier.h * 0.85}px`, maxWidth: "180px", objectFit: "contain" }} />
+                         style={{ maxHeight: `${tier.h * 0.95}px`, maxWidth: "220px", objectFit: "contain", width: "100%" }} />
                   </a>
                 ))}
                 {Array.from({ length: tier.emptySlots }).map((_, si) => (
