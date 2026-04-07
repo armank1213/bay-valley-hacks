@@ -20,16 +20,16 @@ function Reveal({ children, delay = 0, className = "" }: {
 }
 
 const tiers = [
-  { name: "Partners", h: 80, minW: 180, sponsors: [], emptySlots: 3 },
-  { name: "Gold",     h: 90, minW: 220, sponsors: [
-      { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/", bg: "#000000" },
+  { name: "Partners", fontSize: "2rem", sponsors: [], emptySlots: 3 },
+  { name: "Gold",     fontSize: "1.6rem", sponsors: [
+      { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/" },
     ], emptySlots: 2 },
-  { name: "Silver",   h: 80, minW: 200, sponsors: [
-      { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/", bg: "#2d6be4" },
+  { name: "Silver",   fontSize: "1.3rem", sponsors: [
+      { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/" },
     ], emptySlots: 3 },
-  { name: "Bronze",   h: 70, minW: 180, sponsors: [
-      { name: "Figma",  logo: "/sponsors/figma.png",   url: "https://www.figma.com/",    bg: "#f5f5f5" },
-      { name: "Portal", logo: "/sponsors/portal.png",  url: "https://www.portal.so/",    bg: "#111111" },
+  { name: "Bronze",   fontSize: "1.1rem", sponsors: [
+      { name: "Figma",  logo: "/sponsors/figma.png",  url: "https://www.figma.com/" },
+      { name: "Portal", logo: "/sponsors/portal.png", url: "https://www.portal.so/" },
     ], emptySlots: 4 },
 ]
 
@@ -85,31 +85,29 @@ export default function SponsorsSection() {
               <div className="flex flex-wrap gap-3">
                 {tier.sponsors.map((s) => (
                   <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
-                     className="flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-0.5"
+                     className="flex items-center gap-3 px-5 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 group"
                      style={{
-                       height: `${tier.h}px`,
-                       minWidth: `${tier.minW}px`,
-                       padding: "0 20px",
-                       background: s.bg,
-                       border: "1px solid rgba(237,230,220,0.15)",
+                       background: "rgba(237,230,220,0.04)",
+                       border: "1px solid rgba(237,230,220,0.12)",
                      }}>
                     <img src={s.logo} alt={s.name}
-                         style={{ maxHeight: `${tier.h * 0.95}px`, maxWidth: "220px", objectFit: "contain", width: "100%" }} />
+                         style={{ height: "28px", width: "28px", objectFit: "contain", flexShrink: 0 }} />
+                    <span className="font-headline font-semibold group-hover:text-[#e8521a] transition-colors"
+                          style={{ fontSize: tier.fontSize, color: "rgb(237,230,220)", lineHeight: 1 }}>
+                      {s.name}
+                    </span>
                   </a>
                 ))}
                 {Array.from({ length: tier.emptySlots }).map((_, si) => (
                   <a key={si} href={MAILTO}
-                     className="flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-0.5 group"
+                     className="flex items-center gap-3 px-5 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 group"
                      style={{
-                       height: `${tier.h}px`,
-                       minWidth: `${tier.minW}px`,
-                       padding: "0 20px",
-                       background: "rgba(237,230,220,0.03)",
-                       border: "1px dashed rgba(237,230,220,0.1)",
+                       background: "rgba(237,230,220,0.02)",
+                       border: "1px dashed rgba(237,230,220,0.08)",
                      }}>
-                    <span className="text-sm font-ui group-hover:text-[#e8521a] transition-colors duration-150"
-                          style={{ color: "rgba(237,230,220,0.25)" }}>
-                      +
+                    <span className="font-headline font-semibold group-hover:text-[#e8521a] transition-colors"
+                          style={{ fontSize: tier.fontSize, color: "rgba(237,230,220,0.15)", lineHeight: 1 }}>
+                      Your company
                     </span>
                   </a>
                 ))}
