@@ -165,12 +165,11 @@ export default function HeroSection() {
             transition={{ delay: 2.45, duration: 0.4 }}
             className="flex flex-col sm:flex-row items-center gap-3"
           >
-            <SaveButton
-              text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }}
-              href="https://luma.com/6fla5nan"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
+            <a href="https://luma.com/6fla5nan" target="_blank" rel="noopener noreferrer">
+              <SaveButton
+                text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }}
+              />
+            </a>
             <a href="#about"
                onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }) }}
                className="px-7 py-3 rounded-full font-ui font-medium text-sm transition-all hover:bg-white/5"
