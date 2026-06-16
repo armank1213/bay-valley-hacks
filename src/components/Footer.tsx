@@ -34,7 +34,7 @@ export default function Footer() {
           </p>
           <p className="font-serif text-sm mb-10 italic max-w-md mx-auto"
              style={{ color: "rgba(237,230,220,0.32)" }}>
-            In person · April 18 · Bay Area · 100% free
+            In person · August 8 · Mountain House High School · 100% free
           </p>
           <div className="flex flex-wrap gap-3 items-center justify-center">
             <SaveButton text={{ idle: "Apply Now", saving: "Registering...", saved: "You're in!" }} />

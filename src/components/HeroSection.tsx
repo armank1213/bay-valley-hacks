@@ -5,7 +5,7 @@ import { GoldenGateBridge } from "@/components/GoldenGateBridge"
 import { MatrixText } from "@/components/ui/matrix-text"
 import { SaveButton } from "@/components/ui/save-button"
 
-const TARGET = new Date("2026-06-20T08:00:00")
+const TARGET = new Date("2026-08-08T08:00:00")
 
 function useCountdown() {
   const calc = useCallback(() => {
@@ -87,7 +87,7 @@ export default function HeroSection() {
             style={{ background: "rgba(232,82,26,0.12)", border: "1px solid rgba(232,82,26,0.28)", color: "#e8521a" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#e8521a] animate-pulse" />
-            June 20, 2026 · Bay Area, CA
+            August 8, 2026 · Mountain House High School
           </motion.div>
 
           {/* Matrix title — MUCH bigger, Tiempos Headline Black */}
@@ -118,7 +118,7 @@ export default function HeroSection() {
             style={{ color: "rgba(237,230,220,0.5)", fontWeight: 400 }}
           >
             The Bay Area's largest high school hackathon —<br />
-            500+ hackers, 14 hours.
+            300+ hackers, 14 hours.
           </motion.p>
 
           {/* Info pills */}

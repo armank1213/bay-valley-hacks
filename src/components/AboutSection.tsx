@@ -45,7 +45,7 @@ function AnimatedNumber({ target, suffix = "", prefix = "" }: { target: number; 
 }
 
 const stats = [
-  { value: 500, suffix: "+", label: "Hackers" },
+  { value: 300, suffix: "+", label: "Hackers" },
   { value: 14, suffix: "", label: "Hours" },
   { value: 25, prefix: "$", suffix: "K+", label: "In prizes" },
   { value: 100, suffix: "%", label: "Free" },
@@ -70,7 +70,7 @@ export default function AboutSection() {
 
         <Reveal delay={0.05}>
           <MatrixText
-            text="500 hackers. 14 hours."
+            text="300 hackers. 14 hours."
             triggerOnView
             matrixColor="#e8521a"
             resolvedColor="rgb(237,230,220)"
@@ -87,10 +87,10 @@ export default function AboutSection() {
               When &amp; Where
             </p>
             <p className="font-serif text-base font-medium" style={{ color: "rgb(237,230,220)" }}>
-              April 18, 2026
+              August 8, 2026
             </p>
             <p className="font-serif text-base mt-0.5" style={{ color: "rgba(237,230,220,0.5)" }}>
-              Bay Area, CA · In-person
+              Mountain House High School · In-person
             </p>
           </Reveal>
           <Reveal delay={0.13}>

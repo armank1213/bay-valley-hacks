@@ -7,18 +7,12 @@ const orgs = [
   { name: "MHHS Hackathon Club", city: "Mountain House", focus: "Student-run hackathons and tech community building" },
   { name: "StellarHacks", city: "Pleasanton", focus: "High school hackathon organizing collective" },
   { name: "CHS Hackathon Club", city: "Bay Area", focus: "Student-led innovation and competitive hacking" },
-  { name: "EastBayHacks", city: "East Bay", focus: "East Bay student hackathon community" },
-  { name: "BAHA", city: "Bay Area", focus: "Bay Area Hackathon Association" },
-  { name: "CoveHacks", city: "Bay Area", focus: "Student-organized hackathon network" },
 ]
 
 const pins = [
   { name: "MHHS Hackathon Club", sub: "Mountain House", left: "44%", top: "44%" },
   { name: "StellarHacks",        sub: "Pleasanton",     left: "62%", top: "22%" },
   { name: "CHS Hackathon Club",  sub: "Bay Area",       left: "74%", top: "54%" },
-  { name: "EastBayHacks",        sub: "East Bay",       left: "55%", top: "70%" },
-  { name: "BAHA",                sub: "Bay Area",       left: "18%", top: "30%" },
-  { name: "CoveHacks",           sub: "Bay Area",       left: "22%", top: "62%" },
 ]
 
 function Reveal({ children, delay = 0, className = "" }: {
@@ -143,7 +137,7 @@ export default function CollaboratorsSection() {
                      background: "radial-gradient(circle at 50% 50%, rgba(232,82,26,0.04), transparent 60%)",
                    }} />
 
-              {/* All 6 pins with pulsing ripple */}
+              {/* Pins with pulsing ripple */}
               {pins.map((pin, i) => (
                 <motion.div key={pin.name}
                   initial={{ opacity: 0, scale: 0 }}

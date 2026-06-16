@@ -1,11 +1,11 @@
 import { motion } from "framer-motion"
 
 const items = [
-  "500+ Hackers",
+  "300+ Hackers",
   "14 Hours",
   "$25K+ Prizes",
-  "Bay Area, CA",
-  "April 18, 2026",
+  "Mountain House High School",
+  "August 8, 2026",
   "Best Overall",
   "Best AI/ML",
   "Best Fintech",
