@@ -26,11 +26,15 @@ const tiers = [
     ], emptySlots: 2 },
   { name: "Silver",   fontSize: "1.3rem", sponsors: [
       { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/" },
-    ], emptySlots: 3 },
+      { name: "AoPS", logo: "/sponsors/aops.png", url: "https://artofproblemsolving.com/" },
+    ], emptySlots: 2 },
   { name: "Bronze",   fontSize: "1.1rem", sponsors: [
       { name: "Figma",  logo: "/sponsors/figma.png",  url: "https://www.figma.com/" },
       { name: "Portal", logo: "/sponsors/portal.png", url: "https://www.portal.so/" },
-    ], emptySlots: 4 },
+      { name: "CodeCrafters", logo: "/sponsors/codecrafters.svg", url: "https://codecrafters.io/" },
+      { name: "Gen XYZ", logo: "/sponsors/xyz-logo-color.png", url: "https://gen.xyz/" },
+      { name: "Wolfram", logo: "/sponsors/wolfram.png", url: "https://www.wolfram.com/" },
+    ], emptySlots: 1 },
 ]
 
 export default function SponsorsSection() {
@@ -91,7 +95,7 @@ export default function SponsorsSection() {
                        border: "1px solid rgba(237,230,220,0.12)",
                      }}>
                     <img src={s.logo} alt={s.name}
-                         style={{ height: "28px", width: "28px", objectFit: "contain", flexShrink: 0 }} />
+                         style={{ height: "28px", width: s.name === "AoPS" || s.name === "Figma" ? "auto" : "28px", maxWidth: "84px", objectFit: "contain", flexShrink: 0, transform: s.name === "Figma" ? "scale(1.22)" : undefined }} />
                     <span className="font-headline font-semibold group-hover:text-[#e8521a] transition-colors"
                           style={{ fontSize: tier.fontSize, color: "rgb(237,230,220)", lineHeight: 1 }}>
                       {s.name}
