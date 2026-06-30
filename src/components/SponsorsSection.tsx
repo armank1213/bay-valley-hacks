@@ -23,11 +23,12 @@ const tiers = [
   { name: "Partners", fontSize: "2rem", sponsors: [], emptySlots: 3 },
   { name: "Gold",     fontSize: "1.6rem", sponsors: [
       { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/" },
-    ], emptySlots: 2 },
-  { name: "Silver",   fontSize: "1.3rem", sponsors: [
       { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/" },
+      { name: "ScraperCity", logo: "/sponsors/scraperCity.png", url: "https://scrapercity.com/" },
+    ], emptySlots: 0 },
+  { name: "Silver",   fontSize: "1.3rem", sponsors: [
       { name: "AoPS", logo: "/sponsors/aops.png", url: "https://artofproblemsolving.com/" },
-    ], emptySlots: 2 },
+    ], emptySlots: 3 },
   { name: "Bronze",   fontSize: "1.1rem", sponsors: [
       { name: "Figma",  logo: "/sponsors/figma.png",  url: "https://www.figma.com/" },
       { name: "Portal", logo: "/sponsors/portal.png", url: "https://www.portal.so/" },
@@ -95,7 +96,7 @@ export default function SponsorsSection() {
                        border: "1px solid rgba(237,230,220,0.12)",
                      }}>
                     <img src={s.logo} alt={s.name}
-                         style={{ height: "28px", width: s.name === "AoPS" || s.name === "Figma" ? "auto" : "28px", maxWidth: "84px", objectFit: "contain", flexShrink: 0, transform: s.name === "Figma" ? "scale(1.22)" : undefined }} />
+                         style={{ height: "28px", width: s.name === "AoPS" || s.name === "Figma" || s.name === "ScraperCity" ? "auto" : "28px", maxWidth: s.name === "ScraperCity" ? "90px" : "84px", objectFit: "contain", flexShrink: 0, transform: s.name === "Figma" ? "scale(1.22)" : undefined }} />
                     <span className="font-headline font-semibold group-hover:text-[#e8521a] transition-colors"
                           style={{ fontSize: tier.fontSize, color: "rgb(237,230,220)", lineHeight: 1 }}>
                       {s.name}
