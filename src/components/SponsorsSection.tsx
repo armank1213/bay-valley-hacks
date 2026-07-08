@@ -35,7 +35,8 @@ const tiers = [
       { name: "CodeCrafters", logo: "/sponsors/codecrafters.svg", url: "https://codecrafters.io/" },
       { name: "Gen XYZ", logo: "/sponsors/xyz-logo-color.png", url: "https://gen.xyz/" },
       { name: "Wolfram", logo: "/sponsors/wolfram.png", url: "https://www.wolfram.com/" },
-    ], emptySlots: 1 },
+      { name: "Interview Cake", logo: "/sponsors/cake_interview.png", url: "https://www.interviewcake.com/" },
+    ], emptySlots: 0 },
 ]
 
 export default function SponsorsSection() {
