@@ -28,7 +28,8 @@ const tiers = [
     ], emptySlots: 0 },
   { name: "Silver",   fontSize: "1.3rem", sponsors: [
       { name: "AoPS", logo: "/sponsors/aops.png", url: "https://artofproblemsolving.com/" },
-    ], emptySlots: 3 },
+      { name: "PCBWay", logo: "/sponsors/PCBWay_logo.png", url: "https://www.pcbway.com/" },
+    ], emptySlots: 2 },
   { name: "Bronze",   fontSize: "1.1rem", sponsors: [
       { name: "Figma",  logo: "/sponsors/figma.png",  url: "https://www.figma.com/" },
       { name: "Portal", logo: "/sponsors/portal.png", url: "https://www.portal.so/" },
@@ -97,7 +98,7 @@ export default function SponsorsSection() {
                        border: "1px solid rgba(237,230,220,0.12)",
                      }}>
                     <img src={s.logo} alt={s.name}
-                         style={{ height: "28px", width: s.name === "AoPS" || s.name === "Figma" || s.name === "ScraperCity" ? "auto" : "28px", maxWidth: s.name === "ScraperCity" ? "90px" : "84px", objectFit: "contain", flexShrink: 0, transform: s.name === "Figma" ? "scale(1.22)" : undefined }} />
+                         style={{ height: "28px", width: s.name === "AoPS" || s.name === "Figma" || s.name === "ScraperCity" || s.name === "PCBWay" ? "auto" : "28px", maxWidth: s.name === "ScraperCity" ? "90px" : s.name === "PCBWay" ? "70px" : "84px", objectFit: "contain", flexShrink: 0, transform: s.name === "Figma" ? "scale(1.22)" : undefined }} />
                     <span className="font-headline font-semibold group-hover:text-[#e8521a] transition-colors"
                           style={{ fontSize: tier.fontSize, color: "rgb(237,230,220)", lineHeight: 1 }}>
                       {s.name}
