@@ -62,7 +62,7 @@ export default function SponsorsSection() {
           </Reveal>
           <Reveal delay={0.08}>
             <div className="flex flex-wrap gap-4 text-sm font-ui" style={{ color: "rgba(237,230,220,0.35)" }}>
-              <a href="https://drive.google.com/file/d/13bkGMuwUVxzFqSPEe6YdkNoeiEbVfGh2/view?usp=sharing"
+              <a href="/BVH-Sponsorship_Packet.pdf"
                  target="_blank" rel="noopener noreferrer"
                  className="px-3 py-1.5 rounded-lg border transition-all hover:text-[#e8521a] hover:border-[#e8521a]/60"
                  style={{ borderColor: "rgba(237,230,220,0.2)", color: "rgba(237,230,220,0.7)" }}>
