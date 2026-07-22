@@ -6,13 +6,13 @@ import { MatrixText } from "@/components/ui/matrix-text"
 const orgs = [
   { name: "MHHS Hackathon Club", city: "Mountain House", focus: "Student-run hackathons and tech community building" },
   { name: "StellarHacks", city: "Pleasanton", focus: "High school hackathon organizing collective" },
-  { name: "CHS Hackathon Club", city: "Bay Area", focus: "Student-led innovation and competitive hacking" },
+  { name: "Bay Area Hackathon Assn.(BAHA)", city: "Bay Area", focus: "Student-led innovation and competitive hacking" },
 ]
 
 const pins = [
   { name: "MHHS Hackathon Club", sub: "Mountain House", left: "44%", top: "44%" },
   { name: "StellarHacks",        sub: "Pleasanton",     left: "62%", top: "22%" },
-  { name: "CHS Hackathon Club",  sub: "Bay Area",       left: "74%", top: "54%" },
+  { name: "Bay Area Hackathon Assn.(BAHA)",  sub: "Bay Area",       left: "74%", top: "54%" },
 ]
 
 function Reveal({ children, delay = 0, className = "" }: {
