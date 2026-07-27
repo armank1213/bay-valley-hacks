@@ -10,7 +10,7 @@ const items = [
   "Best AI/ML",
   "Best Fintech",
   "Best Hardware",
-  "Best BioTech",
+  "Best Solo Hack",
   "Free to Attend",
   "Grades 9–12",
   "Workshops",

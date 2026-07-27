@@ -52,12 +52,12 @@ const tracks = [
     glow: "rgba(255,200,60,0.25)",
   },
   {
-    name: "Best BioTech",
-    desc: "Where code meets biology. Health, genomics, environmental science — use tech to solve problems in the living world.",
+    name: "Best Solo Hack",
+    desc: "One person, one vision. Build something impressive entirely on your own — no team, just you and your ideas.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M12 22c4-4 8-7.58 8-12a8 8 0 10-16 0c0 4.42 4 8 8 12z" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M12 2v10M8.5 7.5c2-1 5-1 7 0M7 12c2.5-1.5 7.5-1.5 10 0" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M4 21c0-4.42 3.58-8 8-8s8 3.58 8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
     gradient: "linear-gradient(135deg, rgba(180,120,255,0.12), rgba(140,80,220,0.06))",
