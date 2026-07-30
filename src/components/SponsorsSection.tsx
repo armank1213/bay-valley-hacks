@@ -25,6 +25,7 @@ const tiers = [
       { name: "YRI Fellowship", logo: "/sponsors/yri.png", url: "https://www.yriscience.com/" },
       { name: "Crackd.it", logo: "/sponsors/crackdit.png", url: "https://crackd.it/" },
       { name: "ScraperCity", logo: "/sponsors/scraperCity.png", url: "https://scrapercity.com/" },
+      { name: "Portal", logo: "/sponsors/portal.png", url: "https://www.portal.so/" },
     ], emptySlots: 0 },
   { name: "Silver",   fontSize: "1.3rem", sponsors: [
       { name: "AoPS", logo: "/sponsors/aops.png", url: "https://artofproblemsolving.com/" },
@@ -33,7 +34,6 @@ const tiers = [
     ], emptySlots: 1 },
   { name: "Bronze",   fontSize: "1.1rem", sponsors: [
       { name: "Figma",  logo: "/sponsors/figma.png",  url: "https://www.figma.com/" },
-      { name: "Portal", logo: "/sponsors/portal.png", url: "https://www.portal.so/" },
       { name: "CodeCrafters", logo: "/sponsors/codecrafters.svg", url: "https://codecrafters.io/" },
       { name: "Gen XYZ", logo: "/sponsors/xyz-logo-color.png", url: "https://gen.xyz/" },
       { name: "Wolfram", logo: "/sponsors/wolfram.png", url: "https://www.wolfram.com/" },
