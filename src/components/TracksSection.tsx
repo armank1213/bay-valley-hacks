@@ -2,10 +2,17 @@ import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { MatrixText } from "@/components/ui/matrix-text"
 
+const SCHOLARSHIP = "+ Research Scholarships from YRI & RISE"
+
 const tracks = [
   {
     name: "Best Overall",
     desc: "The grand prize. Show us something we've never seen before — the project that makes judges forget about every other demo.",
+    prizes: [
+      { place: "1st", reward: "iPad Pros" },
+      { place: "2nd", reward: "Spectre Gaming Monitors" },
+      { place: "3rd", reward: "AirPods 4" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
@@ -18,6 +25,9 @@ const tracks = [
   {
     name: "Best AI/ML",
     desc: "Push the boundaries of machine intelligence. From fine-tuned models to novel architectures — build something that thinks.",
+    prizes: [
+      { place: "Winner", reward: "Nvidia Jetson Nano Super Developer Kit" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" strokeWidth="1.5" />
@@ -30,6 +40,9 @@ const tracks = [
   {
     name: "Best Fintech",
     desc: "Reimagine money, payments, or financial access. Build tools that make the financial world more open, fair, or efficient.",
+    prizes: [
+      { place: "Winner", reward: "$400 Cash Prize + Crypto Wallet" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -41,6 +54,9 @@ const tracks = [
   {
     name: "Best Hardware",
     desc: "Atoms over bits. Bring circuits, sensors, and physical builds. If it blinks, moves, or measures — we want to see it.",
+    prizes: [
+      { place: "Winner", reward: "BambuLab A1 Mini 3D Printer" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
@@ -54,6 +70,9 @@ const tracks = [
   {
     name: "Best Solo Hack",
     desc: "One person, one vision. Build something impressive entirely on your own — no team, just you and your ideas.",
+    prizes: [
+      { place: "Winner", reward: "50\" 4K QLED HDR Smart TV" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.5" />
@@ -136,6 +155,27 @@ function TrackCard({ track, index }: { track: typeof tracks[0]; index: number })
              style={{ color: "rgba(237,230,220,0.45)" }}>
             {track.desc}
           </p>
+
+          {/* Prizes */}
+          <div className="mt-4 pt-4 space-y-1.5"
+               style={{ borderTop: "1px solid rgba(237,230,220,0.08)" }}>
+            {track.prizes.map((prize) => (
+              <div key={prize.place} className="flex items-baseline gap-2">
+                <span className="font-ui text-[10px] tracking-[0.12em] uppercase shrink-0"
+                      style={{ color: "#e8521a", minWidth: "2.6rem" }}>
+                  {prize.place}
+                </span>
+                <span className="font-serif text-xs leading-snug"
+                      style={{ color: "rgba(237,230,220,0.6)" }}>
+                  {prize.reward}
+                </span>
+              </div>
+            ))}
+            <p className="font-ui text-[10px] tracking-[0.04em] pt-0.5"
+               style={{ color: "rgba(237,230,220,0.3)" }}>
+              {SCHOLARSHIP}
+            </p>
+          </div>
         </div>
       </motion.div>
     </motion.div>
