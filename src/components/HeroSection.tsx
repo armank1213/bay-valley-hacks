@@ -87,7 +87,7 @@ export default function HeroSection() {
             style={{ background: "rgba(232,82,26,0.12)", border: "1px solid rgba(232,82,26,0.28)", color: "#e8521a" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#e8521a] animate-pulse" />
-            August 8, 2026 · Mountain House High School
+            September 26, 2026 · Mountain House High School
           </motion.div>
 
           {/* Matrix title — MUCH bigger, Tiempos Headline Black */}

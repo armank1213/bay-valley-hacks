@@ -61,7 +61,7 @@ export default function ScheduleSection() {
 
         <Reveal delay={0.05}>
           <MatrixText
-            text="Saturday, August 8th"
+            text="Saturday, September 26th"
             triggerOnView
             matrixColor="#e8521a"
             resolvedColor="rgb(237,230,220)"

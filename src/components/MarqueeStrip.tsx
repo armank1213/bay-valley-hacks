@@ -5,7 +5,7 @@ const items = [
   "14 Hours",
   "$25K+ Prizes",
   "Mountain House High School",
-  "August 8, 2026",
+  "September 26, 2026",
   "Best Overall",
   "Best AI/ML",
   "Best Fintech",
