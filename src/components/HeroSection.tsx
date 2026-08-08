@@ -5,7 +5,7 @@ import { GoldenGateBridge } from "@/components/GoldenGateBridge"
 import { MatrixText } from "@/components/ui/matrix-text"
 import { SaveButton } from "@/components/ui/save-button"
 
-const TARGET = new Date("2026-08-08T08:00:00")
+const TARGET = new Date("2026-09-26T08:00:00")
 
 function useCountdown() {
   const calc = useCallback(() => {
