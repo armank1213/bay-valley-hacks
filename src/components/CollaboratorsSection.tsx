@@ -7,12 +7,14 @@ const orgs = [
   { name: "MHHS Hackathon Club", city: "Mountain House", focus: "Student-run hackathons and tech community building" },
   { name: "StellarHacks", city: "Pleasanton", focus: "High school hackathon organizing collective" },
   { name: "Bay Area Hackathon Assn.(BAHA)", city: "Bay Area", focus: "Student-led innovation and competitive hacking" },
+  { name: "Cove Hacks", city: "Bay Area", focus: "Student-led hackathon for high school builders" },
 ]
 
 const pins = [
   { name: "MHHS Hackathon Club", sub: "Mountain House", left: "44%", top: "44%" },
   { name: "StellarHacks",        sub: "Pleasanton",     left: "62%", top: "22%" },
   { name: "Bay Area Hackathon Assn.(BAHA)",  sub: "Bay Area",       left: "74%", top: "54%" },
+  { name: "Cove Hacks",                      sub: "Bay Area",       left: "50%", top: "66%" },
 ]
 
 function Reveal({ children, delay = 0, className = "" }: {
