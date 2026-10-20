@@ -61,7 +61,7 @@ export default function ScheduleSection() {
 
         <Reveal delay={0.05}>
           <MatrixText
-            text="Saturday, September 26th"
+            text="Saturday, October 25th"
             triggerOnView
             matrixColor="#e8521a"
             resolvedColor="rgb(237,230,220)"
@@ -69,7 +69,7 @@ export default function ScheduleSection() {
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 600 }}
           />
           <p className="font-serif text-sm mb-10 italic" style={{ color: "rgba(237,230,220,0.38)" }}>
-            We'll lock in exact times closer to the event.
+            Hybrid event — 8 AM to 12 PM online, the rest in person at Mountain House High School. We'll lock in exact times closer to the event.
           </p>
         </Reveal>
 
