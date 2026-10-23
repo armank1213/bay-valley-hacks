@@ -69,7 +69,7 @@ export default function ScheduleSection() {
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 600 }}
           />
           <p className="font-serif text-sm mb-10 italic" style={{ color: "rgba(237,230,220,0.38)" }}>
-            Hybrid event — 8 AM to 12 PM online, the rest in person at Mountain House High School. We'll lock in exact times closer to the event.
+            In person at Mountain House High School. We'll lock in exact times closer to the event.
           </p>
         </Reveal>
 

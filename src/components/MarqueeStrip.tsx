@@ -4,7 +4,7 @@ const items = [
   "300+ Hackers",
   "14 Hours",
   "$25K+ Prizes",
-  "Hybrid · Online + Mountain House High School",
+  "In person · Mountain House High School",
   "October 25, 2026",
   "Best Overall",
   "Best AI/ML",
