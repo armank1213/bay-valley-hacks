@@ -12,6 +12,7 @@ const faqs = [
   { q: "Do I need to know how to code?", a: "Not at all. Workshops for beginners, mentors to help, and tracks suited to all skill levels." },
   { q: "What are the prizes?", a: "Over $25,000 across tracks: Best Overall, Best AI/ML, Best Fintech, Best Hardware, and Best Solo Hack." },
   { q: "Code of conduct?", a: "We follow the MLH Code of Conduct. Bay Valley Hacks is a safe, inclusive, harassment-free space." },
+  { q: "How many times has BVH been delayed?", a: "~5 times" },
 ]
 
 function FAQItem({ q, a, delay }: { q: string; a: string; delay: number }) {
