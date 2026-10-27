@@ -5,7 +5,7 @@ import { GoldenGateBridge } from "@/components/GoldenGateBridge"
 import { MatrixText } from "@/components/ui/matrix-text"
 import { SaveButton } from "@/components/ui/save-button"
 
-const TARGET = new Date("2026-10-25T08:00:00")
+const TARGET = new Date("2026-11-08T08:00:00")
 
 function useCountdown() {
   const calc = useCallback(() => {
@@ -87,7 +87,7 @@ export default function HeroSection() {
             style={{ background: "rgba(232,82,26,0.12)", border: "1px solid rgba(232,82,26,0.28)", color: "#e8521a" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#e8521a] animate-pulse" />
-            October 25, 2026 · In person at Mountain House High School
+            November 8, 2026 · Mountain House High School
           </motion.div>
 
           {/* Matrix title — MUCH bigger, Tiempos Headline Black */}

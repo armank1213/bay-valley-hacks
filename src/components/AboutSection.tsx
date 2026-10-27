@@ -87,10 +87,10 @@ export default function AboutSection() {
               When &amp; Where
             </p>
             <p className="font-serif text-base font-medium" style={{ color: "rgb(237,230,220)" }}>
-              October 25, 2026
+              November 8, 2026
             </p>
             <p className="font-serif text-base mt-0.5" style={{ color: "rgba(237,230,220,0.5)" }}>
-              In person at Mountain House High School
+              Mountain House High School
             </p>
           </Reveal>
           <Reveal delay={0.13}>
