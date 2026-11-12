@@ -4,7 +4,17 @@ import { MatrixText } from "@/components/ui/matrix-text"
 
 const SCHOLARSHIP = "+ Research Scholarships from YRI & RISE"
 
-const tracks = [
+type Prize = { place: string; reward: string; details?: string[] }
+type Track = {
+  name: string
+  desc: string
+  prizes: Prize[]
+  icon: React.ReactNode
+  gradient: string
+  glow: string
+}
+
+const tracks: Track[] = [
   {
     name: "Best Overall",
     desc: "The grand prize. Show us something we've never seen before — the project that makes judges forget about every other demo.",
@@ -26,7 +36,14 @@ const tracks = [
     name: "Best AI/ML",
     desc: "Push the boundaries of machine intelligence. From fine-tuned models to novel architectures — build something that thinks.",
     prizes: [
-      { place: "Winner", reward: "Up to $400 of cloud compute for your team ($100 per member), provisioned by Exea Labs on request and active for four weeks after the event, plus AMD Developer Cloud GPU hours. Winners need a Microsoft account for access." },
+      {
+        place: "Winner",
+        reward: "Up to $400 of cloud compute for your team",
+        details: [
+          "Provisioned on request, active for four weeks after the event",
+          "Plus AMD Developer Cloud GPU hours",
+        ],
+      },
     ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -41,7 +58,14 @@ const tracks = [
     name: "Best Fintech",
     desc: "Reimagine money, payments, or financial access. Build tools that make the financial world more open, fair, or efficient.",
     prizes: [
-      { place: "Winner", reward: "Up to $300 of cloud compute for your team ($75 per member), provisioned by Exea Labs on request and active for four weeks after the event, plus AMD Developer Cloud GPU hours. Winners need a Microsoft account for access." },
+      {
+        place: "Winner",
+        reward: "Up to $300 of cloud compute for your team",
+        details: [
+          "Provisioned on request, active for four weeks after the event",
+          "Plus AMD Developer Cloud GPU hours",
+        ],
+      },
     ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -165,10 +189,23 @@ function TrackCard({ track, index }: { track: typeof tracks[0]; index: number })
                       style={{ color: "#e8521a", minWidth: "2.6rem" }}>
                   {prize.place}
                 </span>
-                <span className="font-serif text-xs leading-snug"
-                      style={{ color: "rgba(237,230,220,0.6)" }}>
-                  {prize.reward}
-                </span>
+                <div className="flex-1">
+                  <span className="font-serif text-xs leading-snug"
+                        style={{ color: "rgba(237,230,220,0.6)" }}>
+                    {prize.reward}
+                  </span>
+                  {prize.details && (
+                    <ul className="mt-1.5 space-y-1">
+                      {prize.details.map((detail) => (
+                        <li key={detail} className="flex gap-1.5 font-serif text-xs leading-snug"
+                            style={{ color: "rgba(237,230,220,0.5)" }}>
+                          <span className="shrink-0" style={{ color: "#e8521a" }}>·</span>
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
             ))}
             <p className="font-ui text-[10px] tracking-[0.04em] pt-0.5"
