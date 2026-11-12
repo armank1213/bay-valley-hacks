@@ -26,7 +26,7 @@ const tracks = [
     name: "Best AI/ML",
     desc: "Push the boundaries of machine intelligence. From fine-tuned models to novel architectures — build something that thinks.",
     prizes: [
-      { place: "Winner", reward: "Nvidia Jetson Nano Super Developer Kit" },
+      { place: "Winner", reward: "Up to $400 of cloud compute for your team ($100 per member), provisioned by Exea Labs on request and active for four weeks after the event, plus AMD Developer Cloud GPU hours. Winners need a Microsoft account for access." },
     ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -41,7 +41,7 @@ const tracks = [
     name: "Best Fintech",
     desc: "Reimagine money, payments, or financial access. Build tools that make the financial world more open, fair, or efficient.",
     prizes: [
-      { place: "Winner", reward: "$400 Cash Prize + Crypto Wallet" },
+      { place: "Winner", reward: "Up to $300 of cloud compute for your team ($75 per member), provisioned by Exea Labs on request and active for four weeks after the event, plus AMD Developer Cloud GPU hours. Winners need a Microsoft account for access." },
     ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">

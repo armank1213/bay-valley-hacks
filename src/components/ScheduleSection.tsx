@@ -29,7 +29,7 @@ const typeLabel: Record<string, string> = {
 }
 
 const dayLabels: Record<Day, string> = {
-  saturday: "Saturday Nov 8",
+  saturday: "Saturday Nov 15",
 }
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -61,7 +61,7 @@ export default function ScheduleSection() {
 
         <Reveal delay={0.05}>
           <MatrixText
-            text="Saturday, November 8th"
+            text="Saturday, November 15th"
             triggerOnView
             matrixColor="#e8521a"
             resolvedColor="rgb(237,230,220)"
@@ -69,7 +69,7 @@ export default function ScheduleSection() {
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 600 }}
           />
           <p className="font-serif text-sm mb-10 italic" style={{ color: "rgba(237,230,220,0.38)" }}>
-            Mountain House High School. We'll lock in exact times closer to the event.
+            Online. We'll lock in exact times closer to the event.
           </p>
         </Reveal>
 
